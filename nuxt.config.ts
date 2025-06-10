@@ -1,7 +1,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@vite-pwa/nuxt'],
+  modules: [
+    '@vite-pwa/nuxt',
+    '@nuxt/eslint',
+    '@nuxtjs/tailwindcss',
+    '@nuxt/fonts',
+    '@nuxt/icon',
+  ],
   pwa: {
     manifest: {
       name: 'Aucreno',
