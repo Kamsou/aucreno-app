@@ -24,7 +24,7 @@ yarn install
 cp .env.example .env
 ```
 
-# Ajoute tes clés Supabase dans .env
+### Ajoute tes clés Supabase dans .env
 ```bash
 SUPABASE_URL=...
 SUPABASE_ANON_KEY=...
