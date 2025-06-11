@@ -1,7 +1,4 @@
-:root {
-  --ion-font-family: 'Outfit', sans-serif;
-}
-
-button {
-  border-radius: 12px;
+@import "tailwindcss";
+@theme {
+  --breakpoint-xxs: 22rem;
 }

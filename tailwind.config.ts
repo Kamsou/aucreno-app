@@ -6,7 +6,7 @@ export default {
     './components/**/*.{js,vue,ts}',
     './app.vue',
   ],
-   theme: {
+  theme: {
     extend: {
       fontFamily: {
         custom: ['Inter'],

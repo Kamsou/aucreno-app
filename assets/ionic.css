@@ -1,0 +1,49 @@
+:root {
+  --ion-font-family: 'Outfit', sans-serif;
+}
+
+ion-content {
+  --overflow: hidden;
+}
+
+
+ion-button.button-primary {
+    --background: #000;
+    min-height: 50px;
+    margin-inline: 0px;
+    margin-top: 0px;
+
+    --color: white;
+
+    --border-radius: 12px;
+
+    --box-shadow: 0px 4px 0px #434343;
+    transition: box-shadow 0.3s ease-in-out;
+
+    &:active {
+        transform: translateY(2px);
+        --box-shadow: 0px 1px 0px #434343;
+    }
+}
+
+ion-button.button-secondary {
+    --background: transparent;
+    --border-color: #434343;
+    --border-style: solid;
+    --border-width: 2px;
+    min-height: 50px;
+    margin-inline: 0px;
+    margin-top: 0px;
+
+    --color: #434343;
+
+    --border-radius: 12px;
+
+    --box-shadow: 0px 2px 0px #434343;
+
+    &:active {
+        transform: translateY(2px);
+        --box-shadow: 0px 1px 0px #434343;
+    }
+}
+
