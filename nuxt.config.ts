@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/ionic',
   ],
-  css: ['@/assets/ionic.css'],
+  css: ['@/assets/ionic.css', '@/assets/main.css'],
   pwa: {
     manifest: {
       name: 'Aucreno',

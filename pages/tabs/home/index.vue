@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  alias: ['/', '/tabs'],
+  alias: ['/tabs'],
 })
 useHead({
   title: 'Home',

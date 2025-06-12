@@ -19,9 +19,6 @@ function isStandalone() {
 }
 
 onMounted(() => {
-  if (localStorage.getItem('pwa-install-shown') === 'yes') {
-    return
-  }
   if (isStandalone()) {
     return
   }
@@ -39,28 +36,21 @@ function close() {
     v-if="show"
     class="fixed inset-0 z-50 bg-white flex justify-center items-center">
     <div class="w-[90vw] max-w-md">
-      <button
-        class="absolute left-4 top-4 text-gray-400"
-        @click="close">
-        <Icon
-          name="entypo:cross"
-          class="text-gray-800 text-2xl" />
-      </button>
       <p class="hidden xxs:block text-lg font-bold mb-2 text-center">Ajouter Aucreno sur ton tél.</p>
       <div class="flex justify-center items-center flex-row-reverse gap-4">
         <p class="mb-4 text-xs xxs:text-sm text-gray-600">
-          Pour un accès rapide, ajoute cette application à ton écran d'accueil. Suivez les étapes
-          ci-dessous pour votre appareil.
+          Pour un accès rapide, ajoute Aucreno à ton écran d'accueil. Suis les étapes
+          ci-dessous en fonction de ton appareil.
         </p>
-        <!-- Illustration -->
+
         <img
           src="/icon-192.png"
           alt="Icône"
           class="w-12 h-12 mx-auto mb-4 xxs:w-24 xxs:h-24" >
       </div>
-      <!-- Instructions iOS -->
+
       <div class="mb-3">
-        <div class="font-semibold">Navigateur Safari</div>
+        <div class="font-semibold">iOS</div>
         <div class="">
           <div class="flex items-center gap-4 mb-2">
             <div class="bg-gray-100 rounded-lg p-3 flex items-center justify-center">
@@ -86,9 +76,9 @@ function close() {
           </div>
         </div>
       </div>
-      <!-- Instructions Android -->
-      <div class="mb-3">
-        <div class="font-semibold">Navigateur Chrome</div>
+
+      <div class="mb-6">
+        <div class="font-semibold">Android</div>
         <div class="flex items-center gap-4 mb-2">
           <div class="bg-gray-100 rounded-lg p-3 flex items-center justify-center">
             <Icon
@@ -112,16 +102,13 @@ function close() {
           </div>
         </div>
       </div>
-      <!-- <button
-        class="w-full mt-4 bg-black text-white p-3 font-semibold h-12"
+
+      <IonButton
+        class="button-primary w-full normal-case"
         @click="close"
       >
-        C’est fait !
-      </button> -->
-      <ion-button
-        @click="close">
-        Commencer
-      </ion-button>
+        C'est fait !
+      </IonButton>
     </div>
   </div>
 </template>
