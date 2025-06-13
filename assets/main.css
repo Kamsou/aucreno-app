@@ -2,3 +2,55 @@
 @theme {
   --breakpoint-xxs: 22rem;
 }
+
+.slide-forward-enter-active,
+.slide-forward-leave-active,
+.slide-back-enter-active,
+.slide-back-leave-active {
+  transition: 
+    transform 0.38s cubic-bezier(0.4, 0.01, 0.165, 0.99), 
+    opacity 0.33s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+  will-change: transform, opacity;
+  position: absolute;
+  inset: 0;
+  background: white;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Aller vers l'avant */
+.slide-forward-enter-from {
+  transform: translateX(100%);
+  box-shadow: -8px 0 24px 0 rgba(0,0,0,0.08);
+}
+.slide-forward-enter-to {
+  transform: translateX(0%);
+  box-shadow: none;
+}
+.slide-forward-leave-from {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.slide-forward-leave-to {
+  transform: translateX(-40%);
+  opacity: 0.85;
+}
+
+/* Retour arrière */
+.slide-back-enter-from {
+  transform: translateX(-40%);
+  box-shadow: 8px 0 24px 0 rgba(0,0,0,0.08);
+}
+.slide-back-enter-to {
+  transform: translateX(0%);
+  box-shadow: none;
+}
+.slide-back-leave-from {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.slide-back-leave-to {
+  transform: translateX(100%);
+  opacity: 0.85;
+}
+

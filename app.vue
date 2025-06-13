@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const router = useRouter()
+const { direction, updateDirection } = usePageDirection()
+const transitionName = ref('slide-forward')
 
 const isMobile = ref(true)
 const currentUrl = ref('https://aucreno.com')
@@ -11,6 +14,18 @@ function isRealMobile() {
   return isUA
 }
 
+watch(
+  () => router.currentRoute.value,
+  (to, from) => {
+    updateDirection(
+      to ?? router.currentRoute.value,
+      from ?? router.currentRoute.value
+    )
+    transitionName.value = direction.value === 'back' ? 'slide-back' : 'slide-forward'
+  },
+  { immediate: true }
+)
+
 onMounted(() => {
   isMobile.value = isRealMobile()
 })
@@ -19,8 +34,10 @@ onMounted(() => {
 <template>
   <IonApp>
     <template v-if="isMobile">
-      <IonRouterOutlet />
-      <!-- <InstallPrompt /> -->
+      <div class="relative min-h-screen overflow-hidden">
+        <NuxtPage :transition="{ name: transitionName, mode: 'default' }" />
+      </div>
+      <!-- <InstallPromptDialog /> -->
     </template>
 
     <template v-else>

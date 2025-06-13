@@ -39,4 +39,8 @@ export default defineNuxtConfig({
       supabaseKey: process.env.SUPABASE_KEY || '',
     },
   },
+  components: [
+    { path: '~/components/generic', pathPrefix: false },
+    { path: '~/components/specific', pathPrefix: false },
+  ]
 })

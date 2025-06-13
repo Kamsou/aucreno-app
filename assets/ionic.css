@@ -9,6 +9,9 @@ ion-content {
 
 ion-button.button-primary {
     --background: #000;
+    --background-hover: #000;
+    --background-activated: #000;
+    --background-focused: #000;
     min-height: 50px;
     margin-inline: 0px;
     margin-top: 0px;
@@ -28,6 +31,9 @@ ion-button.button-primary {
 
 ion-button.button-secondary {
     --background: transparent;
+    --background-hover: transparent;
+    --background-activated: transparent;
+    --background-focused: transparent;
     --border-color: #434343;
     --border-style: solid;
     --border-width: 2px;

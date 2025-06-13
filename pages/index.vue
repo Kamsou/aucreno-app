@@ -1,31 +1,48 @@
+<script setup lang="ts">
+const router = useRouter()
+function goToRegister() {
+  router.push('/register')
+}
+function goToLogin() {
+  router.push('/login')
+}
+</script>
+
 <template>
   <IonPage>
     <IonContent :fullscreen="true">
-      <section class="mt-8 px-4">
-        <img
-          src="https://res.cloudinary.com/augalo/image/upload/v1749744614/aucreno/calendar-without-aucreno_xx13ly.png"
-          alt="Logo aucreno"
-          class="w-24 mx-auto mb-8"
-        >
-        <img
-          src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
-          alt="Logo aucreno"
-          class="w-24 mx-auto mb-8"
-        >
-        <p>Aucreno – Coach sportif 1:1 : tout centraliser pour vivre ta passion</p>
-        <div class="flex flex-col gap-4 mt-8">
-          <IonButton
-            class="button-primary w-full"
+      <div class="flex flex-col min-h-screen">
+        <section class="flex-1 flex flex-col justify-center mt-8 px-4 pb-32 text-center">
+          <img
+            src="https://res.cloudinary.com/augalo/image/upload/v1749744614/aucreno/calendar-without-aucreno_xx13ly.png"
+            alt="Logo aucreno"
+            class="w-24 mx-auto mb-8"
           >
-            Commencer
-          </IonButton>
-          <IonButton
-            class="button-secondary w-full"
+          <img
+            src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
+            alt="Logo aucreno"
+            class="w-32 mx-auto mb-8"
           >
-            J'ai déjà un compte
-          </IonButton>
+          <p class=" max-w-[280px] mx-auto font-medium"> 
+            Fini les carnets : l'app gère la planif' et le suivi client. Tout à portée de main.
+          </p>
+        </section>
+
+        <div class="fixed bottom-4 left-0 right-0 z-50 bg-white pb-safe px-4 pt-4">
+          <div class="flex flex-col gap-4">
+            <IonButton
+              class="button-primary w-full"
+              @click="goToRegister">
+              Commencer
+            </IonButton>
+            <IonButton
+              class="button-secondary w-full"
+              @click="goToLogin">
+              J'ai déjà un compte
+            </IonButton>
+          </div>
         </div>
-      </section>
+      </div>
     </IonContent>
   </IonPage>
 </template>
