@@ -2009,6 +2009,16 @@
     ufo "^1.5.4"
     unimport "^4.1.2"
 
+"@nuxtjs/supabase@1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-1.5.2.tgz#f5a94608de06c3c795d85c929de3b27b66fdd310"
+  integrity sha512-Ksykh/5H+esDHjrGCsAZV0q0GiLu0MGnpFF80yaedQ47r1V2OkPfbUk1Al/9Fjgwek1uk9NLfRDshSaKJCFLwg==
+  dependencies:
+    "@supabase/ssr" "^0.6.1"
+    "@supabase/supabase-js" "^2.50.0"
+    defu "^6.1.4"
+    pathe "^2.0.3"
+
 "@nuxtjs/tailwindcss@^7.0.0-beta.0":
   version "7.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-7.0.0-beta.0.tgz#85505377cbe9e2e0fa638c72a342c9d24f2174bf"
@@ -2574,6 +2584,13 @@
     "@types/phoenix" "^1.6.6"
     "@types/ws" "^8.18.1"
     ws "^8.18.2"
+
+"@supabase/ssr@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@supabase/ssr/-/ssr-0.6.1.tgz#558d5cc99e876b2c5ef3a19c864739944598eb20"
+  integrity sha512-QtQgEMvaDzr77Mk3vZ3jWg2/y+D8tExYF7vcJT+wQ8ysuvOeGGjYbZlvj5bHYsj/SpC0bihcisnwPrM4Gp5G4g==
+  dependencies:
+    cookie "^1.0.1"
 
 "@supabase/storage-js@2.7.1":
   version "2.7.1"
@@ -4003,7 +4020,7 @@ cookie-es@^2.0.0:
   resolved "https://registry.yarnpkg.com/cookie-es/-/cookie-es-2.0.0.tgz#ca6163d7ef8686ea6bbdd551f1de575569c1ed69"
   integrity sha512-RAj4E421UYRgqokKUmotqAwuplYw15qtdXfY+hGzgCJ/MBjCVZcSoHK/kH9kocfjRjcDME7IiDWR/1WX1TM2Pg==
 
-cookie@^1.0.2:
+cookie@^1.0.1, cookie@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-1.0.2.tgz#27360701532116bd3f1f9416929d176afe1e4610"
   integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==

@@ -6,6 +6,11 @@ const transitionName = ref('slide-forward')
 const isMobile = ref(true)
 const currentUrl = ref('https://aucreno.com')
 
+const withTransition = computed(() => {
+  const path = router.currentRoute.value.path
+  return path === '/' || path === '/login' || path === '/register'
+})
+
 function isRealMobile() {
   const isUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   // const isTouch = !!navigator.maxTouchPoints && navigator.maxTouchPoints > 1
@@ -34,8 +39,11 @@ onMounted(() => {
 <template>
   <IonApp>
     <template v-if="isMobile">
-      <div class="relative min-h-screen overflow-hidden">
-        <NuxtPage :transition="{ name: transitionName, mode: 'default' }" />
+      <div class="">
+        <NuxtPage
+          v-if="withTransition"
+          :transition="{ name: transitionName, mode: 'default' }" />
+        <NuxtPage v-else />
       </div>
       <!-- <InstallPromptDialog /> -->
     </template>
@@ -48,7 +56,7 @@ onMounted(() => {
             alt="Logo aucreno"
             class="w-24 mx-auto mb-8"
           >
-          <p class="text-xl tracking-tight mb-4 bg-gray-100 p-4">Accès mobile uniquement</p>
+          <p class="text-xl tracking-tight mb-4 text-gray-600 bg-gray-100 p-4">Accès mobile uniquement</p>
           <p class="text-gray-500">Scanne ce QR code avec ton téléphone :</p>
           <img
             v-if="currentUrl"

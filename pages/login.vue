@@ -3,8 +3,13 @@ const email = ref('')
 const password = ref('')
 
 const router = useRouter()
+
 function goBack() {
   router.push('/')
+}
+
+function login() {
+  router.push('/tabs/home')
 }
 </script>
 
@@ -13,15 +18,19 @@ function goBack() {
     <IonContent :fullscreen="true">
       <section class="px-4 mt-4">
         <div class="flex justify-between items-center mb-4 w-full">
-          <span
-            class="w-1/2"
-            @click="goBack">retour</span>
-          <img
-            src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
-            alt="Logo aucreno"
-            class="w-12 "
-          >
+          <div
+            class="w-1/2 "
+            @click="goBack">
+            <div class="w-10 h-10 border border-gray-100 rounded-xl flex justify-center items-center shadow">
+              <IonIcon
+                :icon="ioniconsArrowUndoOutline"
+                class="text-gray-500 text-lg"
+                :color="$route.path === '/login' ? 'dark' : 'light'"
+              />
+            </div>
+          </div>
         </div>
+
         <img
           src="https://res.cloudinary.com/augalo/image/upload/v1749744614/aucreno/calendar-without-aucreno_xx13ly.png"
           alt="Logo aucreno"
@@ -43,7 +52,9 @@ function goBack() {
           placeholder="Entre ton mot de passe"
         />
 
-        <IonButton class="button-primary w-full">
+        <IonButton
+          class="button-primary w-full"
+          @click="login">
           Se connecter
         </IonButton>
       </section>

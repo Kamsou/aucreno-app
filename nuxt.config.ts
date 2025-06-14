@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxtjs/ionic',
+    '@nuxtjs/supabase'
   ],
   css: ['@/assets/ionic.css', '@/assets/main.css'],
   pwa: {
@@ -33,14 +34,11 @@ export default defineNuxtConfig({
     },
     registerType: 'autoUpdate',
   },
-  runtimeConfig: {
-    public: {
-      supabaseUrl: process.env.SUPABASE_URL || '',
-      supabaseKey: process.env.SUPABASE_KEY || '',
-    },
-  },
   components: [
     { path: '~/components/generic', pathPrefix: false },
     { path: '~/components/specific', pathPrefix: false },
-  ]
+  ],
+  supabase: {
+    redirect: false,
+  },
 })
