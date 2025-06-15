@@ -1,49 +1,40 @@
 <script setup lang="ts">
 definePageMeta({
-  alias: ['/tabs'],
+  alias: ['/tabs', '/'],
 })
 useHead({
   title: 'Home',
 })
+
+function login() {
+  useRouter().push('/login')
+}
 </script>
 
 <template>
   <IonPage>
-    <IonHeader :translucent="true">
-      <IonToolbar>
-        <IonTitle>Aujourd'hui</IonTitle>
-      </IonToolbar>
-    </IonHeader>
     <IonContent :fullscreen="true">
-      <IonHeader collapse="condense">
-        <IonToolbar>
-          <p class="px-3">Aujourd'hui</p>
-        </IonToolbar>
-      </IonHeader>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
+      <main class="h-full w-full flex flex-col items-center justify-center px-4 pb-20">
+        <img
+          src="/public/icon-calender.png"
+          alt="Icone Calendar"
+          class="w-42 mx-auto mb-4">
+        <img
+          src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
+          alt="Logo aucreno"
+          class="w-24 mx-auto mb-4"
+        >
+        <p class=" max-w-[250px] mx-auto font-medium text-center">
+          Fini les carnets : l'app gère ta planif' et ton suivi client.</p>
+        <div
+          class="mt-4 w-[60vw]"
+          @click="login"
+        >
+          <IonButton class="button-secondary w-full">
+            C'est parti !
+          </IonButton>
+        </div>
+      </main>
     </IonContent>
   </IonPage>
 </template>

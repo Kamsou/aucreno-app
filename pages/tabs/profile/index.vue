@@ -2,6 +2,10 @@
 useHead({
   title: 'Profil',
 })
+
+function login() {
+  useRouter().push('/login')
+}
 </script>
 
 <template>
@@ -14,33 +18,19 @@ useHead({
     <IonContent :fullscreen="true">
       <IonHeader collapse="condense">
         <IonToolbar>
-          <p class="px-3">Profile</p>
+          <p class="px-3 text-2xl font-bold">Profil</p>
         </IonToolbar>
       </IonHeader>
 
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
-
-      <p class="px-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaque adipisci ea, autem 
-        labore sint alias sequi provident nesciunt vel libero saepe dignissimos eveniet ullam aut. 
-        Nemo quisquam modi porro!</p>
+      <main class="px-4 mt-4">
+        <div
+          @click="login"
+        >
+          <IonButton class="button-primary w-full">
+            Connexion ou inscription
+          </IonButton>
+        </div>
+      </main>
     </IonContent>
   </IonPage>
 </template>

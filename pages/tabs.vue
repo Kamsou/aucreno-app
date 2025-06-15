@@ -20,11 +20,12 @@
           <IonIcon
             :icon="ioniconsHomeOutline"
             class="text-xl mb-1"
-            :color="$route.path === '/tabs/home' || $route.path === '/tabs' ? 'dark' : 'light'"
+            :color="$route.path === '/tabs/home' || $route.path === '/tabs' || $route.path === '/' ? 'dark' : 'light'"
           />
           <span
             class=" text-[10px]"
-            :class="$route.path === '/tabs/home' || $route.path === '/tabs' ? 'text-gray-800' : 'text-gray-300'">
+            :class="$route.path === '/tabs/home' || $route.path === '/tabs' || $route.path === '/' ? 
+              'text-gray-800' : 'text-gray-300'">
             Home
           </span>
         </NuxtLink>

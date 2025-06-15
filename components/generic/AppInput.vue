@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, defineProps, defineEmits  } from 'vue'
-
 interface Props {
   modelValue: string
   placeholder?: string
