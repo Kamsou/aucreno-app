@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const router = useRouter()
+const allRoutes = router.getRoutes().map(r => r.path)
+
 const { direction, updateDirection } = usePageDirection()
 const transitionName = ref('slide-forward')
 
@@ -8,7 +10,7 @@ const currentUrl = ref('https://aucreno.com')
 
 const withTransition = computed(() => {
   const path = router.currentRoute.value.path
-  return path === '/' || path === '/login' || path === '/register'
+  return allRoutes.includes(path)
 })
 
 function isRealMobile() {

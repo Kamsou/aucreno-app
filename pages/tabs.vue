@@ -1,11 +1,3 @@
-<script setup lang="ts">
-// const router = useRouter()
-// onMounted(() => {
-//   console.log('Mounted tabs page')
-//   router.replace('/tabs/home')
-// })
-</script>
-
 <template>
   <IonPage>
     <IonContent>
