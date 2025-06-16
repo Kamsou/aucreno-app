@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxtjs/ionic',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
+    '@pinia/nuxt'
   ],
   css: ['@/assets/ionic.css', '@/assets/main.css'],
   pwa: {

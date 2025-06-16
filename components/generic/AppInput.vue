@@ -54,7 +54,9 @@ function toggleShowPassword() {
       tabindex="-1"
       @click="toggleShowPassword"
     >
-      {{ showPassword ? 'Cacher' : 'Voir' }}
+      <IonIcon
+        class="w-4 h-4 flex justify-center items-center"
+        :icon="showPassword ? ioniconsEyeOutline : ioniconsEyeOffOutline"/>
     </button>
   </div>
 </template>

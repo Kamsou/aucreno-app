@@ -3,6 +3,8 @@ useHead({
   title: 'Clients',
 })
 
+const auth = useAuthStore()
+
 function login() {
   useRouter().push('/login')
 }
@@ -22,7 +24,9 @@ function login() {
         </IonToolbar>
       </IonHeader>
 
-      <main class="px-4 mt-4">
+      <main
+        v-if="!auth.isAuthenticated"
+        class="px-4 mt-4">
         <p class="text-md font-bold">Connectes-toi pour voir ta liste de clients</p>
 
         <p class="text-sm">
@@ -37,6 +41,13 @@ function login() {
             Connexion
           </IonButton>
         </div>
+      </main>
+
+      <main
+        v-if="auth.isAuthenticated"
+        class="h-full w-full flex flex-col items-center justify-center px-4 pb-28">
+        <p class="text-3xl font-bold tracking-tighter">Bienvenue sur Aucreno</p>
+        <p class="text-sm text-gray-500 mt-2">Tu peux maintenant gérer tes clients.</p>
       </main>
     </IonContent>
   </IonPage>

@@ -6,6 +6,8 @@ useHead({
   title: 'Home',
 })
 
+const auth = useAuthStore()
+
 function login() {
   useRouter().push('/login')
 }
@@ -14,7 +16,9 @@ function login() {
 <template>
   <IonPage>
     <IonContent :fullscreen="true">
-      <main class="h-full w-full flex flex-col items-center justify-center px-4 pb-20">
+      <main
+        v-if="!auth.isAuthenticated"
+        class="h-full w-full flex flex-col items-center justify-center px-4 pb-20">
         <img
           src="/public/icon-calender.png"
           alt="Icone Calendar"
@@ -32,6 +36,20 @@ function login() {
         >
           <IonButton class="button-secondary w-full">
             C'est parti !
+          </IonButton>
+        </div>
+      </main>
+
+      <main
+        v-if="auth.isAuthenticated"
+        class="h-full w-full flex flex-col items-center justify-center px-4 pb-28">
+        <p class="text-3xl font-bold tracking-tighter">Bienvenue sur Aucreno</p>
+        <p class="text-sm text-gray-500 mt-2">Tu peux maintenant gérer tes rendez-vous et clients.</p>
+        <div class="mt-4 w-[60vw]">
+          <IonButton
+            class="button-primary w-full"
+            @click="$router.push('/tabs/agenda')">
+            Accéder à l'agenda
           </IonButton>
         </div>
       </main>

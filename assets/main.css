@@ -62,4 +62,46 @@
   opacity: 0.85;
 }
 
+/* Slide avant (droite -> gauche) */
+.slide-over-forward-enter-active {
+  transition: transform 0.42s cubic-bezier(0.4, 0.0, 0.2, 1);
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: white;
+}
+.slide-over-forward-enter-from {
+  transform: translateX(100%);
+}
+.slide-over-forward-enter-to {
+  transform: translateX(0%);
+}
+.slide-over-forward-leave-active {
+  z-index: 0;
+}
+.slide-over-forward-leave-from,
+.slide-over-forward-leave-to {
+  transform: none;
+}
 
+/* Slide arrière (gauche -> droite) */
+.slide-over-back-enter-active {
+  transition: transform 0.42s cubic-bezier(0.4, 0.0, 0.2, 1);
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: white;
+}
+.slide-over-back-enter-from {
+  transform: translateX(-100%);
+}
+.slide-over-back-enter-to {
+  transform: translateX(0%);
+}
+.slide-over-back-leave-active {
+  z-index: 0;
+}
+.slide-over-back-leave-from,
+.slide-over-back-leave-to {
+  transform: none;
+}
