@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
 import type { Database } from '~/types/supabase.types'
+import type { User } from '@supabase/supabase-js'
+
 
 
 export const useAuthStore = defineStore('auth', () => {
   const supabase = useSupabaseClient<Database>()
   
-  const user = ref({})
+  const user = ref<User | null>(null)
   const isAuthenticated = ref(false)
 
   async function fetchUser() {
@@ -18,6 +20,11 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = data.user
     isAuthenticated.value = !!user.value
   }
+
+  supabase.auth.onAuthStateChange((_event, session) => {
+    user.value = session?.user ?? null
+    isAuthenticated.value = !!session?.user
+  })
 
   return {
     user,

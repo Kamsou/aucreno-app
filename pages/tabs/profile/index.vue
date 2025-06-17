@@ -4,8 +4,16 @@ useHead({
 })
 
 const auth = useAuthStore()
+const supabase = useSupabaseClient()
 
 function login() {
+  useRouter().push('/login')
+}
+
+async function logout() {
+  await supabase.auth.signOut()
+  auth.isAuthenticated = false
+  auth.user = null
   useRouter().push('/login')
 }
 </script>
@@ -24,31 +32,43 @@ function login() {
         </IonToolbar>
       </IonHeader>
 
-      <main
-        v-if="!auth.isAuthenticated"
-        class="px-4 mt-4">
-        <div
-          @click="login"
-        >
-          <IonButton class="button-primary w-full">
+      <div class="flex flex-col items-center justify-center min-h-[70vh] px-4">
+        <template v-if="!auth.isAuthenticated">
+          <img
+            src="https://res.cloudinary.com/augalo/image/upload/v1749744614/aucreno/calendar-without-aucreno_xx13ly.png"
+            alt="Logo"
+            class="w-20 mb-6"
+          >
+          <p class="text-2xl font-bold text-gray-800 mb-2">Bienvenue !</p>
+          <p class="text-gray-500 mb-6 text-center">Connecte-toi ou crée un compte pour accéder à ton espace coach.</p>
+          <IonButton
+            class="button-primary w-full max-w-xs"
+            @click="login">
             Connexion ou inscription
           </IonButton>
-        </div>
-      </main>
+        </template>
 
-      <main
-        v-if="auth.isAuthenticated"
-        class="h-full w-full flex flex-col items-center justify-center px-4 pb-28">
-        <p class="text-3xl font-bold tracking-tighter">Bienvenue sur Aucreno</p>
-        <p class="text-sm text-gray-500 mt-2">Tu peux maintenant gérer tes rendez-vous et clients.</p>
-        <div class="mt-4 w-[60vw]">
-          <IonButton
-            class="button-primary w-full"
-            @click="$router.push('/tabs/agenda')">
-            Accéder à l'agenda
-          </IonButton>
-        </div>
-      </main>
+        <template v-else>
+          <img
+            src="https://res.cloudinary.com/augalo/image/upload/v1749744614/aucreno/calendar-without-aucreno_xx13ly.png"
+            alt="Profil"
+            class="w-20 mb-6"
+          >
+          <p class="text-3xl font-bold tracking-tighter mb-2">Bienvenue sur Aucreno</p>
+          <p class="text-base text-gray-500 mb-6 text-center">Gère ton profil 
+            et tes rendez-vous  simplicité.</p>
+          <div class="flex flex-col gap-2 items-center w-full max-w-xs">
+            <IonButton
+              class="button-secondary w-full"
+              fill="outline"
+              color="medium"
+              @click="logout"
+            >
+              Se déconnecter
+            </IonButton>
+          </div>
+        </template>
+      </div>
     </IonContent>
   </IonPage>
 </template>

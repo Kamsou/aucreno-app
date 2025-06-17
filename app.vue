@@ -35,13 +35,18 @@ watch(
 
 onMounted(() => {
   isMobile.value = isRealMobile()
+
+  const splash = document.getElementById('splash')
+  if (splash) {
+    setTimeout(() => splash.classList.add('hidden'), 1000) // délai pour l'effet de transition
+  }
 })
 </script>
 
 <template>
   <IonApp>
     <template v-if="isMobile">
-      <div class="">
+      <div class="relative min-h-screen">
         <NuxtPage
           v-if="withTransition"
           :transition="{ name: transitionName, mode: 'default' }" />
