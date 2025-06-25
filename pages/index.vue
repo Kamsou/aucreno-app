@@ -23,7 +23,7 @@ function goToLogin() {
             alt="Logo aucreno"
             class="w-32 mx-auto mb-8"
           >
-          <p class=" max-w-[250px] mx-auto font-medium"> 
+          <p class="text-sm max-w-[250px] mx-auto font-medium"> 
             Fini les carnets : l'app gère ta planif' et ton suivi client.
           </p>
         </section>

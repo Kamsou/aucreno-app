@@ -40,11 +40,12 @@ async function logout() {
             class="w-20 mb-6"
           >
           <p class="text-2xl font-bold text-gray-800 mb-2">Bienvenue !</p>
-          <p class="text-gray-500 mb-6 text-center">Connecte-toi ou crée un compte pour accéder à ton espace coach.</p>
+          <p class="text-gray-500 mb-6 text-center text-sm max-w-[80%]">
+            Connecte-toi ou crée un compte pour accéder à ton espace coach.</p>
           <IonButton
             class="button-primary w-full max-w-xs"
             @click="login">
-            Connexion ou inscription
+            Je rejoins Aucreno
           </IonButton>
         </template>
 
