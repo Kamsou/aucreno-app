@@ -39,13 +39,17 @@ async function logout() {
             alt="Logo"
             class="w-20 mb-6"
           >
-          <p class="text-2xl font-bold text-gray-800 mb-2">Bienvenue !</p>
+          <img
+            src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
+            alt="Logo aucreno"
+            class="w-24 mx-auto mb-6"
+          >
           <p class="text-gray-500 mb-6 text-center text-sm max-w-[80%]">
             Connecte-toi ou crée un compte pour accéder à ton espace coach.</p>
           <IonButton
             class="button-primary w-full max-w-xs"
             @click="login">
-            Je rejoins Aucreno
+            Démarrer
           </IonButton>
         </template>
 

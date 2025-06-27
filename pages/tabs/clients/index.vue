@@ -8,6 +8,39 @@ const auth = useAuthStore()
 function login() {
   useRouter().push('/login')
 }
+
+// Interface pour le type Client
+interface Client {
+  id: string
+  name: string
+  email: string
+  status: 'active' | 'pending' | 'inactive'
+  lastSession?: string
+}
+
+// Données factices des clients
+const clients: Client[] = [
+  {
+    id: '1',
+    name: 'Marie Jolie',
+    email: 'marie.jolie@gmail.com',
+    status: 'active',
+    lastSession: '15 juin'
+  },
+  {
+    id: '2', 
+    name: 'Pierre Dupont',
+    email: 'pierre.dupont@outlook.fr',
+    status: 'pending',
+    lastSession: '12 juin'
+  }
+]
+
+function handleClientClick(client: Client) {
+  console.log('Client cliqué:', client)
+  // Ici vous pouvez naviguer vers la page de détail du client
+  // useRouter().push(`/tabs/clients/${client.id}`)
+}
 </script>
 
 <template>
@@ -27,9 +60,22 @@ function login() {
       </IonHeader>
 
       <div 
+        v-if="!auth.isAuthenticated"
         class="transition-opacity duration-500"
         :class="{ 'opacity-30': !auth.isAuthenticated, 'opacity-100': auth.isAuthenticated }">
         <UserListSkeleton :count="4" />
+      </div>
+
+      <!-- Liste des clients avec le composant générique -->
+      <div 
+        v-if="auth.isAuthenticated" 
+        class="space-y-3 px-4 py-4">
+        <ClientCard
+          v-for="client in clients"
+          :key="client.id"
+          :client="client"
+          @click="handleClientClick"
+        />
       </div>
 
       <main

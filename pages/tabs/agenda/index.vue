@@ -6,7 +6,34 @@ useHead({
 const auth = useAuthStore()
 const selectedDate = ref<string | null>(null)
 
-// Initialiser avec la date d'aujourd'hui
+interface Appointment {
+  id: string
+  startTime: string
+  endTime: string
+  clientName: string
+  type: string
+  status: 'confirmed' | 'pending' | 'cancelled'
+}
+
+const appointments: Appointment[] = [
+  {
+    id: '1',
+    startTime: '14:00',
+    endTime: '15:00',
+    clientName: 'Marie Jolie',
+    type: 'Séance coaching',
+    status: 'confirmed'
+  },
+  {
+    id: '2',
+    startTime: '16:30',
+    endTime: '17:30',
+    clientName: 'Pierre Dupont',
+    type: 'Suivi personnel',
+    status: 'confirmed'
+  }
+]
+
 onMounted(() => {
   const today = new Date()
   selectedDate.value = today.toISOString()
@@ -23,8 +50,7 @@ function onDateChange(event: CustomEvent) {
 function formatSelectedDate(dateString: string) {
   const selectedDateObj = new Date(dateString)
   const today = new Date()
-  
-  // Comparer uniquement les dates (jour, mois, année) sans l'heure
+
   const isToday = selectedDateObj.toDateString() === today.toDateString()
   
   if (isToday) {
@@ -36,6 +62,12 @@ function formatSelectedDate(dateString: string) {
     month: 'long', 
     day: 'numeric' 
   })
+}
+
+function handleAppointmentClick(appointment: Appointment) {
+  console.log('Rendez-vous cliqué:', appointment)
+  // Ici vous pouvez naviguer vers la page de détail du rendez-vous
+  // useRouter().push(`/tabs/agenda/${appointment.id}`)
 }
 </script>
 
@@ -73,9 +105,21 @@ function formatSelectedDate(dateString: string) {
       </div>
 
       <div 
+        v-if="!auth.isAuthenticated"
         class="px-2 mt-2 transition-opacity duration-500 relative"
         :class="{ 'opacity-30': !auth.isAuthenticated, 'opacity-100': auth.isAuthenticated }">
         <UserListSkeleton :count="1" />
+      </div>
+
+      <div 
+        v-if="auth.isAuthenticated" 
+        class="space-y-3 px-4 mt-4 mb-24">
+        <AppointmentCard
+          v-for="appointment in appointments"
+          :key="appointment.id"
+          :appointment="appointment"
+          @click="handleAppointmentClick"
+        />
       </div>
 
       <main
@@ -103,13 +147,6 @@ function formatSelectedDate(dateString: string) {
             </IonButton>
           </div>
         </div>
-      </main>
-
-      <main
-        v-if="auth.isAuthenticated"
-        class="h-full w-full flex flex-col items-center justify-center px-4 pb-28">
-        <p class="text-3xl font-bold tracking-tighter">Bienvenue sur Aucreno</p>
-        <p class="text-sm text-gray-500 mt-2">Tu peux maintenant gérer tes rendez-vous.</p>
       </main>
     </IonContent>
   </IonPage>

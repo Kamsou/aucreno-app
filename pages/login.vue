@@ -58,7 +58,9 @@ async function sendOtp() {
   })
   isLoadingOtp.value = false
   if (error) {
-    alert(error.message)
+    // Si erreur 400 ou autre erreur, rediriger vers l'inscription
+    console.log('Erreur OTP:', error)
+    step.value = 3
     return
   }
   step.value = 2
@@ -78,45 +80,36 @@ async function verifyOtp() {
     return
   }
 
-  const { data } = await supabase
-    .from('coaches')
-    .select('id')
-    .eq('email', user.value.email)
-    .single()
+  // Si la vérification OTP est réussie, rediriger directement vers l'accueil
   isLoadingVerify.value = false
-
-  if (data && data.id) {
-    router.push('/tabs/home')
-  } else {
-    step.value = 3
-  }
+  router.push('/tabs/home')
 }
 
 async function completeProfile() {
   isLoadingProfile.value = true
-  const { error } = await supabase.auth.updateUser({
-    password: user.value.password,
-    data: {
-      first_name: user.value.first_name,
-      last_name: user.value.last_name,
-    }
-  })
-  if (error) {
-    alert(error.message)
+  
+  const { data: currentUser } = await supabase.auth.getUser()
+  const userId = currentUser?.user?.id
+
+  if (!userId) {
+    alert("Erreur d'authentification")
     isLoadingProfile.value = false
     return
   }
 
-  const { data: currentUser } = await supabase.auth.getUser()
-  const userId = currentUser?.user?.id
-
-  await supabase.from('coaches').insert([{
+  const { error } = await supabase.from('coaches').insert([{
     user_id: userId,
     email: user.value.email,
     first_name: user.value.first_name,
     last_name: user.value.last_name,
     cgv: user.value.cgv,
   }])
+
+  if (error) {
+    alert(error.message)
+    isLoadingProfile.value = false
+    return
+  }
 
   isLoadingProfile.value = false
   router.push('/tabs/home')
@@ -234,12 +227,6 @@ onMounted(async () => {
                     type="text"
                     placeholder="Entre ton nom"
                   />
-                  <AppInput 
-                    v-model="user.password"
-                    class="mt-2 mb-4"
-                    type="password"
-                    placeholder="Crée ton mot de passe"
-                  />
                   <div class="flex items-start gap-4 bg-white mb-4">
                     <IonToggle
                       color="dark"
@@ -261,7 +248,7 @@ onMounted(async () => {
                   </div>
                   <IonButton
                     class="button-primary w-full"
-                    :disabled="!user.first_name || !user.last_name || !user.password || !user.cgv || isLoadingProfile"
+                    :disabled="!user.first_name || !user.last_name || !user.cgv || isLoadingProfile"
                     @click="completeProfile">
                     <span v-if="isLoadingProfile">Création...</span>
                     <span v-else>Valider</span>
