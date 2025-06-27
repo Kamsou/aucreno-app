@@ -71,9 +71,9 @@ ion-input {
 }
 
 ion-datetime {
-    --background: #f7f7f7;
+    --background: #ffff;
     --color: #303030;
-    --placeholder-color: #b6b6b6;
+    --placeholder-color: #000;
     --placeholder-opacity: 0.8;
 
     --ion-color-primary: #000;
@@ -87,11 +87,36 @@ ion-datetime {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
- ion-datetime::part(calendar-day),
-  ion-datetime::part(calendar-day active):focus {
-      font-size: 16px;
+ion-datetime::part(calendar-day),
+ion-datetime::part(calendar-day active):focus {
+    font-size: 16px;
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
 }
 
-ion-datetime::part(calendar-action-buttons) {
-    font-size: 10px;
+ion-datetime::part(calendar-day active) {
+    font-size: 16px;
+    background-color: #000;
+    color: #fff;
+}
+
+/* Safe Area pour Safari et iOS */
+.safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Fix pour la tab bar sur Safari */
+nav[class*="fixed bottom"] {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  min-height: calc(4rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Assurer que le contenu ne soit pas caché par la tab bar */
+ion-content {
+  --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
 }

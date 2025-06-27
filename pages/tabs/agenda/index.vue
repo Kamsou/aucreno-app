@@ -104,13 +104,7 @@ function handleAppointmentClick(appointment: Appointment) {
         </p>
       </div>
 
-      <div 
-        v-if="!auth.isAuthenticated"
-        class="px-2 mt-2 transition-opacity duration-500 relative"
-        :class="{ 'opacity-30': !auth.isAuthenticated, 'opacity-100': auth.isAuthenticated }">
-        <UserListSkeleton :count="1" />
-      </div>
-
+      <!-- Section des rendez-vous ou bloc de connexion -->
       <div 
         v-if="auth.isAuthenticated" 
         class="space-y-3 px-4 mt-4 mb-24">
@@ -122,20 +116,32 @@ function handleAppointmentClick(appointment: Appointment) {
         />
       </div>
 
+      <!-- Skeleton pour donner un aperçu (visible en arrière-plan) -->
+      <div 
+        v-if="auth.isAuthenticated"
+        class="px-4 mt-4 opacity-20">
+        <UserListSkeleton :count="2" />
+      </div>
+
+      <!-- Overlay avec flou sur toute la page (sauf bloc de connexion) -->
+      <div 
+        v-if="!auth.isAuthenticated"
+        class="absolute inset-0 bg-white/30 backdrop-blur-xs z-5"/>
+
       <main
         v-if="!auth.isAuthenticated"
-        class="absolute bottom-12 left-0 right-0 w-full h-[25vh] flex flex-col 
-        items-center justify-center px-6 pb-20 pt-8"
-        style="background: linear-gradient(to top, white, white, transparent)"
-      >
-        <div 
-          class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100 w-full max-w-sm mx-auto">
+        class="absolute bottom-32 left-0 right-0 w-full h-[25vh] flex 
+        flex-col items-center justify-center px-4 pb-20 pt-8 bg-gradient-to-t 
+        from-white via-white to-transparent z-10">
+        <div
+          class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border 
+        border-gray-100 w-full max-w-sm mx-auto">
           <p class="text-sm font-bold text-gray-800 text-center mb-2">
-            Connecte-toi pour consulter tes créneaux
+            Connecte-toi pour voir ton agenda
           </p>
 
-          <p class="text-xs text-gray-600 text-center mb-6">
-            Tu pourras ainsi gérer tes rendez-vous et consulter tes créneaux disponibles
+          <p class="text-xs text-gray-600 text-center mb-4">
+            Tu peux créer, consulter et modifier tes rendez-vous en te connectant à ton compte
           </p>
 
           <div @click="login">

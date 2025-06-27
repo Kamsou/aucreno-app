@@ -4,7 +4,9 @@
       <NuxtPage />
       <nav
         class="fixed bottom-0 left-0 right-0 bg-white border-t
-         border-gray-200 flex justify-around items-center h-16 z-50">
+         border-gray-200 flex justify-around items-center h-16 z-50
+         safe-area-inset-bottom pb-safe"
+        style="padding-bottom: env(safe-area-inset-bottom);">
         <NuxtLink
           to="/tabs/home"
           class="flex flex-col items-center text-xs transition"
