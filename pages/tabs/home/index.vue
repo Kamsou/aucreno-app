@@ -1,9 +1,9 @@
 <script setup lang="ts">
+useHead({
+  title: 'Aucreno',
+})
 definePageMeta({
   alias: ['/tabs', '/'],
-})
-useHead({
-  title: 'Home',
 })
 
 const auth = useAuthStore()

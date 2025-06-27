@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'Clients',
+  title: 'Aucreno - Clients',
 })
 
 const auth = useAuthStore()

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'Agenda',
+  title: 'Aucreno - Agenda',
 })
 
 const auth = useAuthStore()

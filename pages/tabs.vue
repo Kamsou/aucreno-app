@@ -1,3 +1,26 @@
+<script setup lang="ts">
+import {
+  homeOutline as ioniconsHomeOutline,
+  calendarOutline as ioniconsCalendarOutline,
+  peopleOutline as ioniconsPeopleOutline,
+  personOutline as ioniconsPersonOutline
+} from 'ionicons/icons'
+
+onMounted(() => {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+  
+  // En mode Safari web, ajuster uniquement la position de la tab bar
+  if (isSafari && !isStandalone) {
+    const tabBar = document.querySelector('.tab-bar-safari') as HTMLElement
+    if (tabBar) {
+      tabBar.style.bottom = '85px' // Au-dessus de la barre Safari
+    }
+  }
+  // Plus de logique de masquage des barres - on laisse Safari gérer naturellement
+})
+</script>
+
 <template>
   <IonPage>
     <IonContent>
@@ -73,48 +96,3 @@
     </IonContent>
   </IonPage>
 </template>
-
-<script setup lang="ts">
-import {
-  homeOutline as ioniconsHomeOutline,
-  calendarOutline as ioniconsCalendarOutline,
-  peopleOutline as ioniconsPeopleOutline,
-  personOutline as ioniconsPersonOutline
-} from 'ionicons/icons'
-import { onMounted } from 'vue'
-
-// Détecter Safari et ajuster la position de la tab bar
-onMounted(() => {
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches
-  
-  if (isSafari && !isStandalone) {
-    // En mode Safari web, ajuster la position
-    const tabBar = document.querySelector('.tab-bar-safari') as HTMLElement
-    if (tabBar) {
-      tabBar.style.bottom = '85px' // Au-dessus de la barre Safari
-    }
-
-    // Forcer le masquage des barres Safari sur toutes les pages
-    const hideAddressBars = () => {
-      setTimeout(() => {
-        window.scrollTo(0, 1)
-        setTimeout(() => window.scrollTo(0, 0), 100)
-      }, 100)
-    }
-
-    // Masquer au chargement
-    hideAddressBars()
-
-    // Masquer lors des changements de route
-    const router = useRouter()
-    router.afterEach(() => {
-      hideAddressBars()
-    })
-
-    // Masquer lors du redimensionnement/orientation
-    window.addEventListener('orientationchange', hideAddressBars)
-    window.addEventListener('resize', hideAddressBars)
-  }
-})
-</script>

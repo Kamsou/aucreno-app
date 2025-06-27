@@ -46,6 +46,7 @@ export default defineNuxtConfig({
       description: "Fini les carnets : l'app gère ta planif' et ton suivi client.",
       theme_color: '#000000',
       display: 'standalone',
+      start_url: '/',
       background_color: '#ffffff',
       icons: [
         {

@@ -1,6 +1,3 @@
-// composables/usePageDirection.ts
-import { ref } from 'vue'
-
 const pageHistory = ref<string[]>([])
 
 export function usePageDirection() {
