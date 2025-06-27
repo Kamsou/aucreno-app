@@ -48,10 +48,10 @@ onMounted(() => {
   <IonApp>
     <template v-if="isMobile">
       <div class="relative min-h-screen">
-        <!-- <NuxtPage
+        <NuxtPage
           v-if="withTransition"
-          :transition="{ name: transitionName, mode: 'default' }" /> -->
-        <NuxtPage />
+          :transition="{ name: transitionName, mode: 'default' }" />
+        <NuxtPage v-else />
       </div>
       <!-- <InstallPromptDialog /> -->
     </template>

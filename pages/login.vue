@@ -82,7 +82,7 @@ async function verifyOtp() {
 
   // Si la vérification OTP est réussie, rediriger directement vers l'accueil
   isLoadingVerify.value = false
-  router.push('/tabs/home')
+  router.push('/')
 }
 
 async function completeProfile() {
@@ -112,7 +112,7 @@ async function completeProfile() {
   }
 
   isLoadingProfile.value = false
-  router.push('/tabs/home')
+  router.push('/')
 }
 
 watch(step, (newStep, oldStep) => {
@@ -127,7 +127,7 @@ const loading = ref(true)
 onMounted(async () => {
   await auth.fetchUser()
   if (auth.isAuthenticated) {
-    router.push('/tabs/home')
+    router.push('/')
   } else {
     loading.value = false
   }

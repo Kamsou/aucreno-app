@@ -32,13 +32,13 @@ onMounted(() => {
                height: 4rem; 
                margin-bottom: 0px;">
         <NuxtLink
-          to="/tabs/home"
+          to="/"
           class="flex flex-col items-center text-xs transition py-2"
         >
           <IonIcon
             :icon="ioniconsHomeOutline"
             class="text-xl mb-1"
-            :color="$route.path === '/tabs/home' || $route.path === '/tabs' || $route.path === '/' ? 'dark' : 'light'"
+            :color="$route.path === '/' || $route.path === '/tabs' || $route.path === '/' ? 'dark' : 'light'"
           />
           <span
             class=" text-[10px]"

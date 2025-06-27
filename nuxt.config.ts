@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'static',
     prerender: {
-      routes: ['/login', '/tabs/home', '/tabs/clients', '/tabs/agenda']
+      routes: ['/login', '/', '/tabs/clients', '/tabs/agenda']
     }
   },
   app: {
@@ -47,8 +47,8 @@ export default defineNuxtConfig({
       theme_color: '#000000',
       display: 'standalone',
       display_override: ['standalone', 'fullscreen'],
-      start_url: '/tabs/home', // Change vers la vraie page de démarrage
-      scope: '/', // Définit le scope PWA
+      start_url: '/',
+      scope: '/',
       background_color: '#ffffff',
       icons: [
         {
