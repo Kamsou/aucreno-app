@@ -1,9 +1,10 @@
-1080[build]
-  command = "npm run build"
+[build]
+  command = "yarn build"
   publish = ".output/public"
 
 [build.environment]
   NODE_VERSION = "18"
+  YARN_VERSION = "1.22.19"
 
 # Redirection pour SPA
 [[redirects]]
@@ -11,7 +12,7 @@
   to = "/index.html"
   status = 200
 
-# Headers de sécurité
+# Headers optimisés pour PWA
 [[headers]]
   for = "/*"
   [headers.values]
@@ -19,9 +20,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
-# Cache optimisé pour Nuxt
 [[headers]]
   for = "/_nuxt/*"
   [headers.values]
@@ -30,4 +29,9 @@
 [[headers]]
   for = "/sw.js"
   [headers.values]
-    Cache-Control = "no-cache"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
