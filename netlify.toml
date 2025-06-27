@@ -1,10 +1,9 @@
 [build]
-  command = "yarn install --frozen-lockfile && yarn build"
-  publish = ".output/public"
+  command = "yarn generate"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "18"
-  YARN_VERSION = "1.22.22"
 
 # Redirection pour SPA
 [[redirects]]

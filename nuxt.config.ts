@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   nitro: {
-    preset: 'netlify',
+    preset: 'static',
     prerender: {
       routes: ['/login', '/tabs/home', '/tabs/clients', '/tabs/agenda']
     }
