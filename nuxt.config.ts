@@ -46,7 +46,9 @@ export default defineNuxtConfig({
       description: "Fini les carnets : l'app gère ta planif' et ton suivi client.",
       theme_color: '#000000',
       display: 'standalone',
-      start_url: '/',
+      display_override: ['standalone', 'fullscreen'],
+      start_url: '/tabs/home', // Change vers la vraie page de démarrage
+      scope: '/', // Définit le scope PWA
       background_color: '#ffffff',
       icons: [
         {
