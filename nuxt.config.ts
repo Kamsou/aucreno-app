@@ -46,7 +46,6 @@ export default defineNuxtConfig({
       description: "Fini les carnets : l'app gère ta planif' et ton suivi client.",
       theme_color: '#000000',
       display: 'standalone',
-      display_override: ['standalone', 'fullscreen'],
       start_url: '/',
       scope: '/',
       background_color: '#ffffff',
@@ -64,23 +63,6 @@ export default defineNuxtConfig({
       ],
     },
     registerType: 'autoUpdate',
-    workbox: {
-      navigateFallback: '/',
-      navigateFallbackDenylist: [/^\/api\//, /^\/_nuxt\//],
-      runtimeCaching: [
-        {
-          urlPattern: ({ request }) => request.destination === 'document',
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'pages',
-            expiration: {
-              maxEntries: 32,
-              maxAgeSeconds: 24 * 60 * 60, // 24 hours
-            },
-          },
-        },
-      ],
-    },
   },
   components: [
     { path: '~/components/generic', pathPrefix: false },

@@ -6,12 +6,8 @@ import {
   personOutline as ioniconsPersonOutline
 } from 'ionicons/icons'
 
-const router = useRouter()
 
-// Fonction pour navigation programmatique PWA-safe
-const navigateTo = (path: string) => {
-  router.push(path)
-}
+
 
 onMounted(() => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
@@ -39,8 +35,8 @@ onMounted(() => {
                height: 4rem; 
                margin-bottom: 0px;">
         <button
-          @click="navigateTo('/')"
           class="flex flex-col items-center text-xs transition py-2"
+          @click="navigateTo('/')"
         >
           <IonIcon
             :icon="ioniconsHomeOutline"
@@ -55,8 +51,8 @@ onMounted(() => {
           </span>
         </button>
         <button
-          @click="navigateTo('/tabs/agenda')"
           class="flex flex-col items-center text-xs transition"
+          @click="navigateTo('/tabs/agenda')"
         >
           <IonIcon
             :icon="ioniconsCalendarOutline"
@@ -70,8 +66,8 @@ onMounted(() => {
           </span>
         </button>
         <button
-          @click="navigateTo('/tabs/clients')"
           class="flex flex-col items-center text-xs transition"
+          @click="navigateTo('/tabs/clients')"
         >
           <IonIcon
             :icon="ioniconsPeopleOutline"
@@ -85,8 +81,8 @@ onMounted(() => {
           </span>
         </button>
         <button
-          @click="navigateTo('/tabs/profile')"
           class="flex flex-col items-center text-xs transition"
+          @click="navigateTo('/tabs/profile')"
         >
           <IonIcon
             :icon="ioniconsPersonOutline"
