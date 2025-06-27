@@ -144,3 +144,25 @@ ion-content {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
+/* CSS spécifique pour Safari web (pas PWA) */
+@media screen and (max-width: 768px) {
+  .tab-bar-safari {
+    /* Position au-dessus de la barre de navigation Safari */
+    bottom: 85px !important; /* Hauteur approximative de la barre Safari */
+  }
+}
+
+/* PWA ou mode plein écran */
+@media (display-mode: standalone) {
+  .tab-bar-safari {
+    bottom: env(safe-area-inset-bottom, 0px) !important;
+  }
+}
+
+/* iPhone avec encoche en PWA */
+@media (display-mode: standalone) and (max-height: 896px) {
+  .tab-bar-safari {
+    bottom: env(safe-area-inset-bottom, 34px) !important;
+  }
+}

@@ -3,14 +3,14 @@
     <IonContent>
       <NuxtPage />
       <nav
-        class="fixed bottom-0 left-0 right-0 bg-white border-t
+        class="fixed left-0 right-0 bg-white border-t
          border-gray-200 flex justify-around items-center z-[9999] tab-bar-safari"
-        style="height: calc(4rem + env(safe-area-inset-bottom, 0px)); 
-               padding-bottom: env(safe-area-inset-bottom, 1rem);
-               padding-top: 0.5rem;">
+        style="bottom: env(safe-area-inset-bottom, 0px);
+               height: 4rem; 
+               margin-bottom: 0px;">
         <NuxtLink
           to="/tabs/home"
-          class="flex flex-col items-center text-xs transition"
+          class="flex flex-col items-center text-xs transition py-2"
         >
           <IonIcon
             :icon="ioniconsHomeOutline"
@@ -73,3 +73,27 @@
     </IonContent>
   </IonPage>
 </template>
+
+<script setup lang="ts">
+import {
+  homeOutline as ioniconsHomeOutline,
+  calendarOutline as ioniconsCalendarOutline,
+  peopleOutline as ioniconsPeopleOutline,
+  personOutline as ioniconsPersonOutline
+} from 'ionicons/icons'
+import { onMounted } from 'vue'
+
+// Détecter Safari et ajuster la position de la tab bar
+onMounted(() => {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+  
+  if (isSafari && !isStandalone) {
+    // En mode Safari web, ajuster la position
+    const tabBar = document.querySelector('.tab-bar-safari') as HTMLElement
+    if (tabBar) {
+      tabBar.style.bottom = '85px' // Au-dessus de la barre Safari
+    }
+  }
+})
+</script>
