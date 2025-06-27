@@ -1,5 +1,30 @@
 export default defineNuxtConfig({
+  nitro: {
+    preset: 'netlify',
+    prerender: {
+      routes: ['/login', '/tabs/home', '/tabs/clients', '/tabs/agenda']
+    }
+  },
+  app: {
+    baseURL: '/',
+    head: {
+      title: 'Aucreno',
+      meta: [
+        { name: 'description', content: "Fini les carnets : l'app gère ta planif' et ton suivi client." },
+        { name: 'theme-color', content: '#000000' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://app.aucreno.com' },
+        { rel: 'apple-touch-icon', href: '/icon-192.png' }
+      ]
+    }
+  },
   ssr: false,
+  experimental: {
+    payloadExtraction: false
+  },
   compatibilityDate: '2025-05-15',
   devtools: { enabled: false },
   modules: [
@@ -17,6 +42,7 @@ export default defineNuxtConfig({
     manifest: {
       name: 'Aucreno',
       short_name: 'Aucreno',
+      description: "Fini les carnets : l'app gère ta planif' et ton suivi client.",
       theme_color: '#000000',
       display: 'standalone',
       background_color: '#ffffff',
