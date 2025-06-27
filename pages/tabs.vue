@@ -4,9 +4,10 @@
       <NuxtPage />
       <nav
         class="fixed bottom-0 left-0 right-0 bg-white border-t
-         border-gray-200 flex justify-around items-center h-16 z-50
-         safe-area-inset-bottom pb-safe"
-        style="padding-bottom: env(safe-area-inset-bottom);">
+         border-gray-200 flex justify-around items-center z-[9999] tab-bar-safari"
+        style="height: calc(4rem + env(safe-area-inset-bottom, 0px)); 
+               padding-bottom: env(safe-area-inset-bottom, 1rem);
+               padding-top: 0.5rem;">
         <NuxtLink
           to="/tabs/home"
           class="flex flex-col items-center text-xs transition"
