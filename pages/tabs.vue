@@ -6,6 +6,13 @@ import {
   personOutline as ioniconsPersonOutline
 } from 'ionicons/icons'
 
+const router = useRouter()
+
+// Fonction pour navigation programmatique PWA-safe
+const navigateTo = (path: string) => {
+  router.push(path)
+}
+
 onMounted(() => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches
@@ -31,14 +38,14 @@ onMounted(() => {
         style="bottom: env(safe-area-inset-bottom, 0px);
                height: 4rem; 
                margin-bottom: 0px;">
-        <NuxtLink
-          to="/"
+        <button
+          @click="navigateTo('/')"
           class="flex flex-col items-center text-xs transition py-2"
         >
           <IonIcon
             :icon="ioniconsHomeOutline"
             class="text-xl mb-1"
-            :color="$route.path === '/' || $route.path === '/tabs' || $route.path === '/' ? 'dark' : 'light'"
+            :color="$route.path === '/tabs/home' || $route.path === '/tabs' || $route.path === '/' ? 'dark' : 'light'"
           />
           <span
             class=" text-[10px]"
@@ -46,9 +53,9 @@ onMounted(() => {
               'text-gray-800' : 'text-gray-300'">
             Home
           </span>
-        </NuxtLink>
-        <NuxtLink
-          to="/tabs/agenda"
+        </button>
+        <button
+          @click="navigateTo('/tabs/agenda')"
           class="flex flex-col items-center text-xs transition"
         >
           <IonIcon
@@ -61,9 +68,9 @@ onMounted(() => {
             :class="$route.path === '/tabs/agenda' ? 'text-gray-800' : 'text-gray-300'">
             Agenda
           </span>
-        </NuxtLink>
-        <NuxtLink
-          to="/tabs/clients"
+        </button>
+        <button
+          @click="navigateTo('/tabs/clients')"
           class="flex flex-col items-center text-xs transition"
         >
           <IonIcon
@@ -76,9 +83,9 @@ onMounted(() => {
             :class="$route.path === '/tabs/clients' ? 'text-gray-800' : 'text-gray-300'">
             Clients
           </span>
-        </NuxtLink>
-        <NuxtLink
-          to="/tabs/profile"
+        </button>
+        <button
+          @click="navigateTo('/tabs/profile')"
           class="flex flex-col items-center text-xs transition"
         >
           <IonIcon
@@ -91,7 +98,7 @@ onMounted(() => {
             :class="$route.path === '/tabs/profile' ? 'text-gray-800' : 'text-gray-300'">
             Compte
           </span>
-        </NuxtLink>
+        </button>
       </nav>
     </IonContent>
   </IonPage>

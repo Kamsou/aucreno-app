@@ -16,10 +16,10 @@ const withTransition = computed(() => {
 function isRealMobile() {
   const isUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   /* decomment that line to test on desktop */
-  // return isUA
-  const isTouch = !!navigator.maxTouchPoints && navigator.maxTouchPoints > 1
-  const isSmallScreen = window.innerWidth <= 600
-  return isUA && isTouch && isSmallScreen
+  return isUA
+  // const isTouch = !!navigator.maxTouchPoints && navigator.maxTouchPoints > 1
+  // const isSmallScreen = window.innerWidth <= 600
+  // return isUA && isTouch && isSmallScreen
 }
 
 watch(

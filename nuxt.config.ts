@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       title: 'Aucreno',
       meta: [
         { name: 'description', content: "Fini les carnets : l'app gère ta planif' et ton suivi client." },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no' },
         { name: 'theme-color', content: '#000000' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }
@@ -64,6 +64,23 @@ export default defineNuxtConfig({
       ],
     },
     registerType: 'autoUpdate',
+    workbox: {
+      navigateFallback: '/',
+      navigateFallbackDenylist: [/^\/api\//, /^\/_nuxt\//],
+      runtimeCaching: [
+        {
+          urlPattern: ({ request }) => request.destination === 'document',
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'pages',
+            expiration: {
+              maxEntries: 32,
+              maxAgeSeconds: 24 * 60 * 60, // 24 hours
+            },
+          },
+        },
+      ],
+    },
   },
   components: [
     { path: '~/components/generic', pathPrefix: false },
