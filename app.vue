@@ -48,7 +48,7 @@ onMounted(() => {
   <IonApp>
     <template v-if="isMobile">
       <div class="relative min-h-screen">
-        <NuxtPwaManifest />
+        <!-- <NuxtPwaManifest /> -->
         <NuxtPage
           v-if="withTransition"
           :transition="{ name: transitionName, mode: 'default' }" />
