@@ -145,11 +145,20 @@ ion-content {
   backface-visibility: hidden;
 }
 
-/* CSS spécifique pour Safari web (pas PWA) */
-@media screen and (max-width: 768px) {
+/* CSS spécifique pour les navigateurs web (pas PWA) */
+@media screen and (max-width: 768px) and (display-mode: browser) {
   .tab-bar-safari {
-    /* Position au-dessus de la barre de navigation Safari */
-    bottom: 85px !important; /* Hauteur approximative de la barre Safari */
+    /* Position au-dessus de la barre de navigation */
+    bottom: 0px !important; /* Collé à l'address bar */
+  }
+}
+
+/* CSS spécifique pour Safari web uniquement */
+@media screen and (max-width: 768px) and (display-mode: browser) {
+  @supports (-webkit-touch-callout: none) {
+    .tab-bar-safari {
+      bottom: 85px !important; /* Hauteur pour Safari iOS */
+    }
   }
 }
 
@@ -179,23 +188,37 @@ ion-content {
   overscroll-behavior: contain;
 }
 
-@media (display-mode: standalone) {
-  html {
-    -webkit-tap-highlight-color: transparent;
-    /* Gardez user-select et touch-callout pour permettre la navigation */
-  }
-  
-  /* Force le viewport à rester stable */
-  body {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-  }
+/* Amélioration des interactions tactiles */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Réactivez la sélection pour les inputs et textareas */
+input, textarea, [contenteditable] {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+/* Amélioration des boutons et liens */
+button, .ion-activatable, a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  touch-action: manipulation;
+}
+
+/* Force le pointer sur les éléments cliquables */
+.tab-bar-safari a,
+.button-primary,
+ion-button {
+  touch-action: manipulation;
+  cursor: pointer;
 }
 
 /* Fix pour empêcher la sortie du standalone */
 @media (display-mode: standalone) {
-  /* Empêche le pull-to-refresh qui peut casser le standalone */
   body {
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: auto;
