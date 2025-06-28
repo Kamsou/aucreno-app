@@ -2,6 +2,9 @@
 useHead({
   title: 'Aucreno - Profil',
 })
+definePageMeta({
+  layout: 'tabs'
+})
 
 const auth = useAuthStore()
 const supabase = useSupabaseClient()

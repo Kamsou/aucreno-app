@@ -2,6 +2,9 @@
 useHead({
   title: 'Aucreno - Clients',
 })
+definePageMeta({
+  layout: 'tabs'
+})
 
 const auth = useAuthStore()
 

@@ -5,24 +5,15 @@ import {
   peopleOutline as ioniconsPeopleOutline,
   personOutline as ioniconsPersonOutline
 } from 'ionicons/icons'
-
-// onMounted(() => {
-//   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
-//   const isStandalone = window.matchMedia('(display-mode: standalone)').matches
-  
-//   if (isSafari && !isStandalone) {
-//     const tabBar = document.querySelector('.tab-bar-safari') as HTMLElement
-//     if (tabBar) {
-//       tabBar.style.bottom = '85px'
-//     }
-//   }
-// })
 </script>
 
 <template>
   <IonPage>
     <IonContent>
-      <NuxtPage />
+      <!-- Le contenu de la page sera injecté ici -->
+      <slot />
+      
+      <!-- Navigation fixe en bas -->
       <nav
         class="fixed left-0 right-0 bg-white border-t
          border-gray-200 flex justify-around items-center z-[9999] tab-bar-safari"
@@ -36,12 +27,11 @@ import {
           <IonIcon
             :icon="ioniconsHomeOutline"
             class="text-xl mb-1"
-            :color="$route.path === '/' || $route.path === '/tabs' || $route.path === '/' ? 'dark' : 'light'"
+            :color="$route.path === '/' ? 'dark' : 'light'"
           />
           <span
-            class=" text-[10px]"
-            :class="$route.path === '/' || $route.path === '/tabs' || $route.path === '/' ? 
-              'text-gray-800' : 'text-gray-300'">
+            class="text-[10px]"
+            :class="$route.path === '/' ? 'text-gray-800' : 'text-gray-300'">
             Home
           </span>
         </NuxtLink>
@@ -55,7 +45,7 @@ import {
             :color="$route.path === '/tabs/agenda' ? 'dark' : 'light'"
           />
           <span
-            class=" text-[10px]"
+            class="text-[10px]"
             :class="$route.path === '/tabs/agenda' ? 'text-gray-800' : 'text-gray-300'">
             Agenda
           </span>
@@ -70,7 +60,7 @@ import {
             :color="$route.path === '/tabs/clients' ? 'dark' : 'light'"
           />
           <span
-            class=" text-[10px]"
+            class="text-[10px]"
             :class="$route.path === '/tabs/clients' ? 'text-gray-800' : 'text-gray-300'">
             Clients
           </span>
@@ -85,7 +75,7 @@ import {
             :color="$route.path === '/tabs/profile' ? 'dark' : 'light'"
           />
           <span
-            class=" text-[10px]"
+            class="text-[10px]"
             :class="$route.path === '/tabs/profile' ? 'text-gray-800' : 'text-gray-300'">
             Compte
           </span>

@@ -1,48 +1,66 @@
 <script setup lang="ts">
-const router = useRouter()
-function goToRegister() {
-  router.push('/register')
-}
-function goToLogin() {
-  router.push('/login')
+useHead({
+  title: 'Aucreno',
+})
+definePageMeta({
+  layout: 'tabs'
+})
+const auth = useAuthStore()
+
+function login() {
+  useRouter().push('/login')
 }
 </script>
 
 <template>
   <IonPage>
-    <IonContent :fullscreen="true">
-      <div class="flex flex-col min-h-screen">
-        <section class="flex-1 flex flex-col justify-center mt-8 px-4 pb-32 text-center">
-          <img
-            src="https://res.cloudinary.com/augalo/image/upload/v1749744614/aucreno/calendar-without-aucreno_xx13ly.png"
-            alt="Logo aucreno"
-            class="w-24 mx-auto mb-8"
-          >
-          <img
-            src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
-            alt="Logo aucreno"
-            class="w-32 mx-auto mb-8"
-          >
-          <p class="text-sm max-w-[250px] mx-auto font-medium"> 
-            Fini les carnets : l'app gère ta planif' et ton suivi client.
-          </p>
-        </section>
-
-        <div class="fixed bottom-4 left-0 right-0 z-50 bg-white pb-safe px-4 pt-4">
-          <div class="flex flex-col gap-4">
-            <IonButton
-              class="button-primary w-full"
-              @click="goToRegister">
-              Commencer
-            </IonButton>
-            <IonButton
-              class="button-secondary w-full"
-              @click="goToLogin">
-              J'ai déjà un compte
-            </IonButton>
-          </div>
+    <IonContent
+      :fullscreen="true"
+      class="bg-gradient-to-b from-white to-[#d1f3f7]">
+      <main
+        v-if="!auth.isAuthenticated"
+        class="h-full w-full flex flex-col items-center justify-center px-4 pb-20">
+        <img
+          src="https://res.cloudinary.com/augalo/image/upload/v1749744614/aucreno/calendar-without-aucreno_xx13ly.png"
+          alt="Logo"
+          class="w-20 mb-6"
+        >
+        <img
+          src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
+          alt="Logo aucreno"
+          class="w-24 mx-auto mb-6"
+        >
+        <p class="text-gray-500 mb-6 text-center text-sm max-w-[60%]">
+          Fini les carnets&nbsp;: l'app gère ta planif' et ton suivi client.
+        </p>
+        <div class="mt-2 w-full max-w-xs">
+          <IonButton
+            class="button-primary w-full"
+            @click="login">
+            Démarrer
+          </IonButton>
         </div>
-      </div>
+      </main>
+
+      <main
+        v-else
+        class="h-full w-full flex flex-col items-center justify-center px-4 pb-28">
+        <img
+          src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
+          alt="Logo aucreno"
+          class="w-24 mx-auto mb-6"
+        >
+        <p class="max-w-[280px] mx-auto font-medium text-center text-gray-700 mb-6">
+          Tu peux désormais gérer ton agenda, tes clients et ton profil.
+        </p>
+        <div class="mt-2 w-full max-w-xs">
+          <IonButton
+            class="button-primary w-full"
+            @click="$router.push('/tabs/agenda')">
+            Accéder à l'agenda
+          </IonButton>
+        </div>
+      </main>
     </IonContent>
   </IonPage>
 </template>

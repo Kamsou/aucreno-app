@@ -142,6 +142,11 @@ onMounted(async () => {
   </div>
   <div v-else>
     <IonPage>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle/>
+        </IonToolbar>
+      </IonHeader>
       <IonContent :fullscreen="true">
         <section class="px-4 mt-4">
           <div class="flex justify-between items-center mb-4 w-full">
@@ -262,3 +267,18 @@ onMounted(async () => {
     </IonPage>
   </div>
 </template>
+
+<style scoped>
+  ion-toolbar {
+    --background: #fff;
+    --color: white;
+
+    --border-color: #ffff;
+    --border-width: 0;
+    --border-style: double;
+
+    --min-height: 44px;
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+  }
+</style>

@@ -49,10 +49,12 @@ onMounted(() => {
     <template v-if="isMobile">
       <div class="relative min-h-screen">
         <!-- <NuxtPwaManifest /> -->
-        <NuxtPage
-          v-if="withTransition"
-          :transition="{ name: transitionName, mode: 'default' }" />
-        <NuxtPage v-else />
+        <NuxtLayout>
+          <NuxtPage
+            v-if="withTransition"
+            :transition="{ name: transitionName, mode: 'default' }" />
+          <NuxtPage v-else />
+        </NuxtLayout>
       </div>
       <!-- <InstallPromptDialog /> -->
     </template>

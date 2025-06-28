@@ -3,9 +3,8 @@ useHead({
   title: 'Aucreno',
 })
 definePageMeta({
-  alias: ['/tabs', '/'],
+  layout: 'tabs'
 })
-
 const auth = useAuthStore()
 
 function login() {

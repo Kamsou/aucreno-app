@@ -2,6 +2,9 @@
 useHead({
   title: 'Aucreno - Agenda',
 })
+definePageMeta({
+  layout: 'tabs'
+})
 
 const auth = useAuthStore()
 const selectedDate = ref<string | null>(null)
