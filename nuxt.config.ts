@@ -1,10 +1,10 @@
 export default defineNuxtConfig({
-  nitro: {
-    preset: 'static',
-    prerender: {
-      routes: ['/login', '/', '/tabs/clients', '/tabs/agenda']
-    }
-  },
+  // nitro: {
+  //   preset: 'static',
+  //   prerender: {
+  //     routes: ['/login', '/', '/tabs/clients', '/tabs/agenda']
+  //   }
+  // },
   app: {
     baseURL: '/',
     head: {
@@ -30,8 +30,6 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false
   },
-  mode: 'spa',
-  target: 'static',
   compatibilityDate: '2025-05-15',
   devtools: { enabled: false },
   modules: [
@@ -76,21 +74,7 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-      // Ajoutez cette règle pour gérer les routes dynamiques
-      runtimeCaching: [
-        {
-          urlPattern: /^https:\/\/.*\.supabase\.co\/.*/i,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'supabase-cache',
-            expiration: {
-              maxEntries: 10,
-              maxAgeSeconds: 300
-            }
-          }
-        }
-      ]
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}']
     },
     client: {
       installPrompt: true
