@@ -74,7 +74,16 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}']
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      runtimeCaching: [
+        {
+          urlPattern: /^\/(?:tabs\/)?(?:agenda|clients|profile)?$/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'pages-cache'
+          }
+        }
+      ]
     },
     client: {
       installPrompt: true
