@@ -74,20 +74,12 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     workbox: {
       navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-      runtimeCaching: [
-        {
-          urlPattern: /^\/(?:tabs\/)?(?:agenda|clients|profile)?$/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'pages-cache'
-          }
-        }
-      ]
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}']
     },
+    devOptions: { enabled: false, type: 'module', navigateFallbackAllowlist: [/^\/$/] },
     client: {
       installPrompt: true
-    }
+    },
   },
   components: [
     { path: '~/components/generic', pathPrefix: false },

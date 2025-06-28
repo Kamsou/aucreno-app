@@ -10,10 +10,8 @@ import {
 <template>
   <IonPage>
     <IonContent>
-      <!-- Le contenu de la page sera injecté ici -->
       <slot />
       
-      <!-- Navigation fixe en bas -->
       <nav
         class="fixed left-0 right-0 bg-white border-t
          border-gray-200 flex justify-around items-center z-[9999] tab-bar-safari"
