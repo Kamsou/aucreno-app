@@ -21,6 +21,7 @@ import {
                height: 4rem; 
                margin-bottom: 0px;">
         <NuxtLink
+          replace
           to="/"
           class="flex flex-col items-center text-xs transition py-2"
         >
@@ -36,6 +37,7 @@ import {
           </span>
         </NuxtLink>
         <NuxtLink
+          replace
           to="/tabs/agenda"
           class="flex flex-col items-center text-xs transition"
         >
@@ -51,6 +53,7 @@ import {
           </span>
         </NuxtLink>
         <NuxtLink
+          replace
           to="/tabs/clients"
           class="flex flex-col items-center text-xs transition"
         >
@@ -66,6 +69,7 @@ import {
           </span>
         </NuxtLink>
         <NuxtLink
+          replace
           to="/tabs/profile"
           class="flex flex-col items-center text-xs transition"
         >
