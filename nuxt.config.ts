@@ -17,6 +17,19 @@ export default defineNuxtConfig({
     { path: '~/components/generic', pathPrefix: false },
     { path: '~/components/specific', pathPrefix: false },
   ],
+  app: {
+    head: {
+      meta: [
+        // iOS Status Bar
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+        { name: 'apple-mobile-web-app-title', content: 'Aucreno' },
+        // Theme colors
+        { name: 'theme-color', content: '#ffffff' },
+        { name: 'msapplication-TileColor', content: '#ffffff' },
+      ]
+    }
+  },
   supabase: {
     redirect: false,
   },
@@ -32,7 +45,7 @@ export default defineNuxtConfig({
       name: 'Aucreno',
       short_name: 'Aucreno',
       description: "Fini les carnets : l'app gère ta planif' et ton suivi client.",
-      theme_color: '#000000',
+      theme_color: '#ffffff',
       lang: "fr",
       icons: [
         {

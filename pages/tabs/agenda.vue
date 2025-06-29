@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import usePWADetection from '~/composables/usePWADetection'
-
 useHead({
   title: 'Aucreno - Agenda',
 })
+
 definePageMeta({
   layout: 'tabs'
 })
@@ -19,8 +18,6 @@ interface Appointment {
 
 const auth = useAuthStore()
 
-// Détection PWA pour adapter l'interface
-const { isPWA } = usePWADetection()
 
 const selectedDate = ref<string | null>(null)
 
@@ -137,10 +134,9 @@ function handleAppointmentClick(appointment: Appointment) {
 
       <main
         v-if="!auth.isAuthenticated"
-        class="absolute left-0 right-0 w-full h-[25vh] flex 
+        class="fixed left-0 top-24 w-full h-[25vh] flex 
         flex-col items-center justify-center px-4 pt-8 bg-gradient-to-t 
-        from-white via-white to-transparent z-10"
-        :class="isPWA ? 'bottom-8' : 'bottom-32 pb-20'">
+        from-white via-white to-transparent z-10">
         <div
           class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border 
         border-gray-100 w-full max-w-sm mx-auto">
@@ -161,6 +157,7 @@ function handleAppointmentClick(appointment: Appointment) {
             </IonButton>
           </div>
         </div>
+      
       </main>
     </IonContent>
   </IonPage>

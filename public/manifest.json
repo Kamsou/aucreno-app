@@ -5,7 +5,7 @@
   "start_url": "/",
   "scope": "/",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "orientation": "portrait",
   "description": "Fini les carnets : l'app gère ta planif' et ton suivi client.",
   "icons": [

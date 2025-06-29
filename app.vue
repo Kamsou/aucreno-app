@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const router = useRouter()
 const allRoutes = router.getRoutes().map(r => r.path)
 

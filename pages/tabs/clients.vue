@@ -78,7 +78,7 @@ function handleClientClick(client: Client) {
 
       <main
         v-if="!auth.isAuthenticated"
-        class="absolute bottom-32 left-0 right-0 w-full h-[25vh] flex 
+        class="fixed top left-0 right-0 w-full h-[25vh] flex 
         flex-col items-center justify-center px-4 pb-20 pt-8 bg-gradient-to-t 
         from-white via-white to-transparent">
         <div
