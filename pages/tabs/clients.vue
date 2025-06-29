@@ -48,11 +48,6 @@ function handleClientClick(client: Client) {
 
 <template>
   <IonPage>
-    <IonHeader :translucent="true">
-      <IonToolbar>
-        <IonTitle>Clients</IonTitle>
-      </IonToolbar>
-    </IonHeader>
     <IonContent
       :fullscreen="true"
       class="relative">

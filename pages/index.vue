@@ -9,7 +9,6 @@ definePageMeta({
 
 const auth = useAuthStore()
 
-
 function login() {
   useRouter().push('/login')
 }

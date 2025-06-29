@@ -1,13 +1,12 @@
 <script setup lang="ts">
+import usePWADetection from '~/composables/usePWADetection'
+
 useHead({
   title: 'Aucreno - Agenda',
 })
 definePageMeta({
   layout: 'tabs'
 })
-
-const auth = useAuthStore()
-const selectedDate = ref<string | null>(null)
 
 interface Appointment {
   id: string
@@ -17,6 +16,13 @@ interface Appointment {
   type: string
   status: 'confirmed' | 'pending' | 'cancelled'
 }
+
+const auth = useAuthStore()
+
+// Détection PWA pour adapter l'interface
+const { isPWA } = usePWADetection()
+
+const selectedDate = ref<string | null>(null)
 
 const appointments: Appointment[] = [
   {
@@ -76,18 +82,15 @@ function handleAppointmentClick(appointment: Appointment) {
 
 <template>
   <IonPage>
-    <IonHeader
-      :translucent="true">
-      <IonToolbar>
-        <IonTitle>Agenda</IonTitle>
-      </IonToolbar>
-    </IonHeader>
     <IonContent :fullscreen="true">
       <IonHeader collapse="condense">
         <IonToolbar>
-          <p class="px-3 text-2xl font-bold">Agenda</p>
+          <p class="px-3 text-2xl font-bold">
+            Agenda
+          </p>
         </IonToolbar>
       </IonHeader>
+
       <div class="mt-2 p-4">
         <IonDatetime
           presentation="date"
@@ -121,7 +124,7 @@ function handleAppointmentClick(appointment: Appointment) {
 
       <!-- Skeleton pour donner un aperçu (visible en arrière-plan) -->
       <div 
-        v-if="auth.isAuthenticated"
+        v-if="!auth.isAuthenticated"
         class="px-4 mt-4 opacity-20">
         <UserListSkeleton :count="2" />
       </div>
@@ -129,13 +132,15 @@ function handleAppointmentClick(appointment: Appointment) {
       <!-- Overlay avec flou sur toute la page (sauf bloc de connexion) -->
       <div 
         v-if="!auth.isAuthenticated"
-        class="absolute inset-0 bg-white/30 backdrop-blur-xs z-5"/>
+        class="absolute inset-0 bg-white/30 backdrop-blur-xs z-5"
+      />
 
       <main
         v-if="!auth.isAuthenticated"
-        class="absolute bottom-32 left-0 right-0 w-full h-[25vh] flex 
-        flex-col items-center justify-center px-4 pb-20 pt-8 bg-gradient-to-t 
-        from-white via-white to-transparent z-10">
+        class="absolute left-0 right-0 w-full h-[25vh] flex 
+        flex-col items-center justify-center px-4 pt-8 bg-gradient-to-t 
+        from-white via-white to-transparent z-10"
+        :class="isPWA ? 'bottom-8' : 'bottom-32 pb-20'">
         <div
           class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border 
         border-gray-100 w-full max-w-sm mx-auto">

@@ -24,13 +24,6 @@ async function logout() {
 
 <template>
   <IonPage>
-    <IonHeader
-      v-if="isPWA"
-      :translucent="true">
-      <IonToolbar>
-        <IonTitle>Profile</IonTitle>
-      </IonToolbar>
-    </IonHeader>
     <IonContent :fullscreen="true">
       <IonHeader collapse="condense">
         <IonToolbar>
