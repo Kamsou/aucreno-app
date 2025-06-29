@@ -10,7 +10,6 @@ const auth = useAuthStore()
 const selectedDate = ref<string | null>(null)
 
 const { $pwa } = useNuxtApp()
-const isPWA = computed(() => $pwa?.isPWAInstalled || false)
 
 interface Appointment {
   id: string
@@ -80,23 +79,15 @@ function handleAppointmentClick(appointment: Appointment) {
 <template>
   <IonPage>
     <IonHeader 
-      v-if="isPWA" 
       :translucent="true">
       <IonToolbar>
         <IonTitle>Agenda</IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true">
-      <IonHeader 
-        v-if="!isPWA" 
-        collapse="condense">
-        <IonToolbar>
-          <p class="px-3 text-2xl font-bold">Agenda</p>
-          <p>{{ auth.isAuthenticated }}</p>
-          <p>{{ auth }}</p>
-        </IonToolbar>
-      </IonHeader>
-
+      <div>
+        {{ $pwa }}
+      </div>
       <div class="mt-2 p-4">
         <IonDatetime
           presentation="date"
