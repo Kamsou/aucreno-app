@@ -83,6 +83,11 @@ function handleAppointmentClick(appointment: Appointment) {
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true">
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <p class="px-3 text-2xl font-bold">Agenda</p>
+        </IonToolbar>
+      </IonHeader>
       <div class="mt-2 p-4">
         <IonDatetime
           presentation="date"

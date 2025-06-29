@@ -63,4 +63,33 @@ export default defineNuxtConfig({
       registerPlugin: false
     },
   },
+  vite: {
+    css: {
+      devSourcemap: false
+    },
+    build: {
+      sourcemap: false,
+      rollupOptions: {
+        external: ['zlib', 'stream', 'http', 'https', 'url']
+      }
+    },
+    optimizeDeps: {
+      exclude: ['@supabase/realtime-js', '@supabase/node-fetch']
+    },
+    define: {
+      global: 'globalThis',
+    },
+    logLevel: 'warn'
+  },
+  tailwindcss: {
+    viewer: false,
+    cssPath: false
+  },
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext'
+      }
+    }
+  },
 })
