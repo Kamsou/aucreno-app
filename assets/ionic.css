@@ -166,7 +166,7 @@ ion-content {
 
 /* Détection Safari spécifique via user-agent (fallback JS) */
 .safari-ios .tab-bar-chrome {
-  bottom: 130px !important;
+  bottom: 85px !important;
 }
 
 /* PWA mode (standalone) - garde le comportement normal */
