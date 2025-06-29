@@ -2,41 +2,27 @@ export default defineNuxtPlugin(() => {
   if (import.meta.client) {
     const router = useRouter()
     
-    // Intercepte toutes les navigations
-    router.beforeEach((to, from) => {
-      const isStandalone = window.matchMedia('(display-mode: standalone)').matches
-      
-      if (isStandalone) {
-        // Force la navigation programmatique au lieu du rechargement
-        if (to.fullPath !== from.fullPath) {
-          // Empêche le rechargement complet
-          return navigateTo(to.fullPath, { replace: false, external: false })
-        }
-      }
-    })
-
-    // Intercepte tous les clics sur les liens
+    // Intercepte uniquement les liens externes ou problématiques
     document.addEventListener('click', (e) => {
       const isStandalone = window.matchMedia('(display-mode: standalone)').matches
       
       if (isStandalone) {
         const link = (e.target as HTMLElement).closest('a')
         
-        if (link && link.href) {
+        if (link && link.href && !link.getAttribute('data-no-intercept')) {
           const url = new URL(link.href)
           const currentOrigin = window.location.origin
           
-          // Si c'est un lien interne
-          if (url.origin === currentOrigin) {
+          // Intercepte uniquement les liens internes sans target="_blank"
+          if (url.origin === currentOrigin && !link.target) {
             e.preventDefault()
-            e.stopPropagation()
             
-            // Utilise navigateTo au lieu du comportement par défaut
             const path = url.pathname + url.search + url.hash
-            navigateTo(path, { replace: false, external: false })
+            // Utilise router.push au lieu de navigateTo pour éviter les conflits
+            router.push(path)
           }
         }
       }
-    }, true) // Capture phase pour intercepter avant Ionic/Nuxt
+    }, true)
   }
 })
