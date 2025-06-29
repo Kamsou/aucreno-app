@@ -8,6 +8,7 @@ definePageMeta({
 
 const auth = useAuthStore()
 const supabase = useSupabaseClient()
+const { isPWA } = usePWADetection()
 
 function login() {
   useRouter().push('/login')
@@ -23,7 +24,9 @@ async function logout() {
 
 <template>
   <IonPage>
-    <IonHeader :translucent="true">
+    <IonHeader
+      v-if="isPWA"
+      :translucent="true">
       <IonToolbar>
         <IonTitle>Profile</IonTitle>
       </IonToolbar>
@@ -31,7 +34,12 @@ async function logout() {
     <IonContent :fullscreen="true">
       <IonHeader collapse="condense">
         <IonToolbar>
-          <p class="px-3 text-2xl font-bold">Profil</p>
+          <p
+            class="px-3 text-2xl font-bold"
+            :class="isPWA ? 'mt-0' : 'mt-4'"
+          >
+            Profil
+          </p>
         </IonToolbar>
       </IonHeader>
 

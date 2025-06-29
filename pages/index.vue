@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 useHead({
   title: 'Aucreno',
 })
@@ -7,27 +8,7 @@ definePageMeta({
 })
 
 const auth = useAuthStore()
-const { $pwa } = useNuxtApp()
 
-// Détection PWA correcte
-const isPWA = ref(false)
-
-onMounted(() => {
-  if (import.meta.client) {
-    // Méthode 1: display-mode (la plus fiable pour PWA)
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches
-    
-    // Méthode 2: navigator.standalone (iOS Safari)
-    const nav = window.navigator as { standalone?: boolean }
-    const iOSStandalone = 'standalone' in window.navigator && nav.standalone
-    
-    isPWA.value = isStandalone || !!iOSStandalone
-    
-    console.log('Display mode standalone:', isStandalone)
-    console.log('iOS standalone:', iOSStandalone)
-    console.log('isPWA final:', isPWA.value)
-  }
-})
 
 function login() {
   useRouter().push('/login')
@@ -61,11 +42,6 @@ function login() {
             @click="login">
             Démarrer
           </IonButton>
-        </div>
-        <div class="mt-4 p-3 bg-gray-100 rounded-lg text-xs text-gray-600 max-w-xs">
-          <p><strong>isPWA:</strong> {{ isPWA }}</p>
-          <p><strong>$pwa exists:</strong> {{ !!$pwa }}</p>
-          <p><strong>Display mode:</strong> Standalone</p>
         </div>
       </main>
 

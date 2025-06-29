@@ -7,6 +7,8 @@ definePageMeta({
 })
 
 const auth = useAuthStore()
+const { isPWA } = usePWADetection()
+
 const selectedDate = ref<string | null>(null)
 
 interface Appointment {
@@ -77,6 +79,7 @@ function handleAppointmentClick(appointment: Appointment) {
 <template>
   <IonPage>
     <IonHeader
+      v-if="isPWA"
       :translucent="true">
       <IonToolbar>
         <IonTitle>Agenda</IonTitle>
@@ -85,7 +88,12 @@ function handleAppointmentClick(appointment: Appointment) {
     <IonContent :fullscreen="true">
       <IonHeader collapse="condense">
         <IonToolbar>
-          <p class="px-3 text-2xl font-bold">Agenda</p>
+          <p
+            class="px-3 text-2xl font-bold"
+            :class="isPWA ? 'mt-0' : 'mt-4'"
+          >
+            Agenda
+          </p>
         </IonToolbar>
       </IonHeader>
       <div class="mt-2 p-4">
