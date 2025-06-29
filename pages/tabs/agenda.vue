@@ -88,10 +88,12 @@ function handleAppointmentClick(appointment: Appointment) {
     </IonHeader>
     <IonContent :fullscreen="true">
       <IonHeader 
-        v-if="isPWA" 
+        v-if="!isPWA" 
         collapse="condense">
         <IonToolbar>
           <p class="px-3 text-2xl font-bold">Agenda</p>
+          <p>{{ auth.isAuthenticated }}</p>
+          <p>{{ auth }}</p>
         </IonToolbar>
       </IonHeader>
 
