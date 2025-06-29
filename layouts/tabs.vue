@@ -13,12 +13,9 @@ import {
       <slot />
       
       <nav
-        class="fixed left-0 right-0 bg-white border-t
-         border-gray-200 flex justify-around items-center z-[9999] tab-bar-chrome"
-        style="bottom: max(env(safe-area-inset-bottom, 0px), env(keyboard-inset-height, 0px));
-               height: 4rem; 
-               margin-bottom: 0px;
-               padding-bottom: env(safe-area-inset-bottom, 0px);">
+        class="fixed left-0 right-0 bg-white border-t border-gray-200 
+               flex justify-around items-center z-[9999] tab-bar-chrome"
+        style="height: 4rem;">
         <NuxtLink
           replace
           to="/"

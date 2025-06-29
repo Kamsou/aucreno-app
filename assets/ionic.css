@@ -135,9 +135,9 @@ ion-content {
 }
 
 /* Force la tab bar au-dessus de tout */
-.tab-bar-safari {
+.tab-bar-chrome {
   position: fixed !important;
-  bottom: 0 !important;
+  bottom: env(safe-area-inset-bottom, 0px) !important;
   left: 0 !important;
   right: 0 !important;
   z-index: 99999 !important;
@@ -145,34 +145,20 @@ ion-content {
   backface-visibility: hidden;
 }
 
-/* CSS spécifique pour les navigateurs web (pas PWA) */
-@media screen and (max-width: 768px) and (display-mode: browser) {
-  .tab-bar-safari {
-    /* Position au-dessus de la barre de navigation */
-    bottom: 0px !important; /* Collé à l'address bar */
-  }
-}
-
-/* CSS spécifique pour Safari web uniquement */
-@media screen and (max-width: 768px) and (display-mode: browser) {
-  @supports (-webkit-touch-callout: none) {
-    .tab-bar-safari {
-      bottom: 85px !important; /* Hauteur pour Safari iOS */
+/* Safari iOS spécifiquement - détection par supports */
+@supports (-webkit-touch-callout: none) {
+  /* Safari sur iOS en mode navigateur */
+  @media not all and (display-mode: standalone) {
+    .tab-bar-chrome {
+      bottom: 100px !important; /* Au-dessus de l'address bar Safari */
     }
   }
 }
 
-/* PWA ou mode plein écran */
+/* PWA mode (standalone) - garde le comportement normal */
 @media (display-mode: standalone) {
-  .tab-bar-safari {
+  .tab-bar-chrome {
     bottom: env(safe-area-inset-bottom, 0px) !important;
-  }
-}
-
-/* iPhone avec encoche en PWA */
-@media (display-mode: standalone) and (max-height: 896px) {
-  .tab-bar-safari {
-    bottom: env(safe-area-inset-bottom, 34px) !important;
   }
 }
 
