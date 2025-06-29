@@ -50,6 +50,7 @@ onMounted(() => {
       <div class="relative min-h-screen">
         <!-- <NuxtPwaManifest /> -->
         <NuxtLayout>
+          <VitePwaManifest />
           <NuxtPage
             v-if="withTransition"
             :transition="{ name: transitionName, mode: 'default' }" />
