@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const router = useRouter()
-const allRoutes = router.getRoutes().map(r => r.path)
+// const allRoutes = router.getRoutes().map(r => r.path)
 
 const { direction, updateDirection } = usePageDirection()
 const transitionName = ref('slide-forward')
@@ -8,10 +8,10 @@ const transitionName = ref('slide-forward')
 const isMobile = ref(true)
 const currentUrl = ref('https://aucreno.com')
 
-const withTransition = computed(() => {
-  const path = router.currentRoute.value.path
-  return allRoutes.includes(path)
-})
+// const withTransition = computed(() => {
+//   const path = router.currentRoute.value.path
+//   return allRoutes.includes(path)
+// })
 
 function isRealMobile() {
   const isUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -51,10 +51,10 @@ onMounted(() => {
         <!-- <NuxtPwaManifest /> -->
         <NuxtLayout>
           <VitePwaManifest />
-          <NuxtPage
+          <!-- <NuxtPage
             v-if="withTransition"
-            :transition="{ name: transitionName, mode: 'default' }" />
-          <NuxtPage v-else />
+            :transition="{ name: transitionName, mode: 'default' }" /> -->
+          <NuxtPage  />
         </NuxtLayout>
       </div>
       <!-- <InstallPromptDialog /> -->
