@@ -150,9 +150,23 @@ ion-content {
   /* Safari sur iOS en mode navigateur */
   @media not all and (display-mode: standalone) {
     .tab-bar-chrome {
-      bottom: 100px !important; /* Au-dessus de l'address bar Safari */
+      bottom: 150px !important; /* Augmenté pour Safari iOS */
     }
   }
+}
+
+/* Fallback supplémentaire pour Safari iOS */
+@media screen and (max-width: 768px) {
+  @supports (-webkit-touch-callout: none) and (not (display-mode: standalone)) {
+    .tab-bar-chrome {
+      bottom: 140px !important; /* Double sécurité pour Safari */
+    }
+  }
+}
+
+/* Détection Safari spécifique via user-agent (fallback JS) */
+.safari-ios .tab-bar-chrome {
+  bottom: 130px !important;
 }
 
 /* PWA mode (standalone) - garde le comportement normal */
