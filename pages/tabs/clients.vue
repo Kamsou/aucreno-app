@@ -7,7 +7,6 @@ definePageMeta({
 })
 
 const auth = useAuthStore()
-const { isPWA } = usePWADetection()
 
 function login() {
   useRouter().push('/login')
@@ -49,9 +48,7 @@ function handleClientClick(client: Client) {
 
 <template>
   <IonPage>
-    <IonHeader
-      v-if="isPWA"
-      :translucent="true">
+    <IonHeader :translucent="true">
       <IonToolbar>
         <IonTitle>Clients</IonTitle>
       </IonToolbar>
@@ -61,12 +58,7 @@ function handleClientClick(client: Client) {
       class="relative">
       <IonHeader collapse="condense">
         <IonToolbar>
-          <p
-            class="px-3 text-2xl font-bold"
-            :class="isPWA ? 'mt-0' : 'mt-4'"
-          >
-            Clients
-          </p>
+          <p class="px-3 text-2xl font-bold">Clients</p>
         </IonToolbar>
       </IonHeader>
 
