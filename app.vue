@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const router = useRouter()
+// const router = useRouter()
 // const allRoutes = router.getRoutes().map(r => r.path)
 
-const { direction, updateDirection } = usePageDirection()
-const transitionName = ref('slide-forward')
+// const { direction, updateDirection } = usePageDirection()
+// const transitionName = ref('slide-forward')
 
 const isMobile = ref(true)
 const currentUrl = ref('https://aucreno.com')
@@ -13,34 +13,34 @@ const currentUrl = ref('https://aucreno.com')
 //   return allRoutes.includes(path)
 // })
 
-function isRealMobile() {
-  const isUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-  /* decomment that line to test on desktop */
-  return isUA
-  // const isTouch = !!navigator.maxTouchPoints && navigator.maxTouchPoints > 1
-  // const isSmallScreen = window.innerWidth <= 600
-  // return isUA && isTouch && isSmallScreen
-}
+// function isRealMobile() {
+//   const isUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+//   /* decomment that line to test on desktop */
+//   return isUA
+//   // const isTouch = !!navigator.maxTouchPoints && navigator.maxTouchPoints > 1
+//   // const isSmallScreen = window.innerWidth <= 600
+//   // return isUA && isTouch && isSmallScreen
+// }
 
-watch(
-  () => router.currentRoute.value,
-  (to, from) => {
-    updateDirection(
-      to ?? router.currentRoute.value,
-      from ?? router.currentRoute.value
-    )
-    transitionName.value = direction.value === 'back' ? 'slide-back' : 'slide-forward'
-  },
-  { immediate: true }
-)
+// watch(
+//   () => router.currentRoute.value,
+//   (to, from) => {
+//     updateDirection(
+//       to ?? router.currentRoute.value,
+//       from ?? router.currentRoute.value
+//     )
+//     transitionName.value = direction.value === 'back' ? 'slide-back' : 'slide-forward'
+//   },
+//   { immediate: true }
+// )
 
 onMounted(() => {
-  isMobile.value = isRealMobile()
+  // isMobile.value = isRealMobile()
 
-  const splash = document.getElementById('splash')
-  if (splash) {
-    setTimeout(() => splash.classList.add('hidden'), 1000) // délai pour l'effet de transition
-  }
+  // const splash = document.getElementById('splash')
+  // if (splash) {
+  //   setTimeout(() => splash.classList.add('hidden'), 1000) // délai pour l'effet de transition
+  // }
 })
 </script>
 

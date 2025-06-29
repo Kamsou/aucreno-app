@@ -50,15 +50,9 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
+      cleanupOutdatedCaches: true,
       navigateFallback: '/',
-      navigateFallbackDenylist: [
-        /^\/api\//,
-        /^\/admin\//,
-        /^\/_nuxt\//,
-        /^\/assets\//,
-        /^\/__nuxt_test\//,
-        /^\/@vite\//,
-      ],
+      navigateFallbackAllowlist: [/^\/$/],
     },
     devOptions: {
       enabled: false,
