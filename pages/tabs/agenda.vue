@@ -9,8 +9,6 @@ definePageMeta({
 const auth = useAuthStore()
 const selectedDate = ref<string | null>(null)
 
-const { $pwa } = useNuxtApp()
-
 interface Appointment {
   id: string
   startTime: string
@@ -78,16 +76,13 @@ function handleAppointmentClick(appointment: Appointment) {
 
 <template>
   <IonPage>
-    <IonHeader 
+    <IonHeader
       :translucent="true">
       <IonToolbar>
         <IonTitle>Agenda</IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true">
-      <div>
-        {{ $pwa }}
-      </div>
       <div class="mt-2 p-4">
         <IonDatetime
           presentation="date"

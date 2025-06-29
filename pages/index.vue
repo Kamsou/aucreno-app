@@ -6,6 +6,8 @@ definePageMeta({
   layout: 'tabs'
 })
 const auth = useAuthStore()
+const { $pwa } = useNuxtApp()
+const isPWA = computed(() => $pwa?.isPWAInstalled || false)
 
 function login() {
   useRouter().push('/login')
@@ -39,6 +41,10 @@ function login() {
             @click="login">
             Démarrer
           </IonButton>
+        </div>
+        <div>
+          isPWA: {{ isPWA }}
+          getPWAInfo: {{ $pwa }}
         </div>
       </main>
 
