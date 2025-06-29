@@ -125,3 +125,30 @@ html {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Tab bar adaptative pour Chrome mobile */
+.tab-bar-chrome {
+  /* Position au-dessus de l'address bar dynamique de Chrome */
+  bottom: max(env(safe-area-inset-bottom, 0px), env(keyboard-inset-height, 0px)) !important;
+}
+
+/* Support pour les navigateurs qui supportent dvh (dynamic viewport height) */
+@supports (height: 100dvh) {
+  .tab-bar-chrome {
+    bottom: calc(100dvh - 100vh + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* Fix spécifique pour Chrome sur Android */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (orientation: portrait) {
+  .tab-bar-chrome {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + env(titlebar-area-height, 0px)) !important;
+  }
+}
+
+/* Ajustement pour le viewport stable quand l'address bar est cachée */
+@media (orientation: portrait) and (max-height: 700px) {
+  .tab-bar-chrome {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 8px) !important;
+  }
+}

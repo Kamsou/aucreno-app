@@ -40,10 +40,6 @@ function login() {
             Démarrer
           </IonButton>
         </div>
-        <div 
-          class="px-4 mt-4 opacity-20">
-          <UserListSkeleton :count="2" />
-        </div>
       </main>
 
       <main

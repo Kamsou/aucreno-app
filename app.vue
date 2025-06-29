@@ -7,6 +7,7 @@ const transitionName = ref('slide-forward')
 
 const isMobile = ref(true)
 const currentUrl = ref('https://aucreno.com')
+const showSplash = ref(true)
 
 const withTransition = computed(() => {
   const path = router.currentRoute.value.path
@@ -37,17 +38,13 @@ watch(
 onMounted(() => {
   isMobile.value = isRealMobile()
 
-  const splash = document.getElementById('splash')
-  if (splash) {
-    setTimeout(() => splash.classList.add('hidden'), 1000) // délai pour l'effet de transition
-  }
+  setTimeout(() => {
+    showSplash.value = false
+  }, 2000)
 
-  // Optimisation PWA - empêche les reloads accidentels
   if (window.matchMedia('(display-mode: standalone)').matches) {
-    // Désactive le pull-to-refresh
     document.body.style.overscrollBehavior = 'none'
     
-    // Empêche les liens externes d'ouvrir dans la PWA
     document.addEventListener('click', (e) => {
       const link = (e.target as HTMLElement).closest('a')
       if (link && link.target === '_blank') {
@@ -61,6 +58,17 @@ onMounted(() => {
 
 <template>
   <IonApp>
+    <!-- Splash Screen -->
+    <div
+      v-if="showSplash"
+      class="fixed inset-0 z-[10000] bg-white flex items-center justify-center splash-screen">
+      <img
+        src="https://res.cloudinary.com/augalo/image/upload/v1749743519/aucreno/aucreno_ugbklx.png"
+        alt="Logo aucreno"
+        class="w-32 h-32 object-contain splash-logo"
+      >
+    </div>
+
     <template v-if="isMobile">
       <div class="relative min-h-screen">
         <NuxtPwaManifest />
@@ -94,3 +102,48 @@ onMounted(() => {
     </template>
   </IonApp>
 </template>
+
+<style>
+.splash-screen {
+  animation: splash-fade-out 2s ease-in-out forwards;
+}
+
+.splash-logo {
+  animation: logo-lifecycle 2s ease-in-out;
+}
+
+@keyframes splash-fade-out {
+  0% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes logo-lifecycle {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+</style>

@@ -9,6 +9,9 @@ definePageMeta({
 const auth = useAuthStore()
 const selectedDate = ref<string | null>(null)
 
+const { $pwa } = useNuxtApp()
+const isPWA = computed(() => $pwa?.isPWAInstalled || false)
+
 interface Appointment {
   id: string
   startTime: string
@@ -76,13 +79,17 @@ function handleAppointmentClick(appointment: Appointment) {
 
 <template>
   <IonPage>
-    <IonHeader :translucent="true">
+    <IonHeader 
+      v-if="isPWA" 
+      :translucent="true">
       <IonToolbar>
         <IonTitle>Agenda</IonTitle>
       </IonToolbar>
     </IonHeader>
     <IonContent :fullscreen="true">
-      <IonHeader collapse="condense">
+      <IonHeader 
+        v-if="isPWA" 
+        collapse="condense">
         <IonToolbar>
           <p class="px-3 text-2xl font-bold">Agenda</p>
         </IonToolbar>
