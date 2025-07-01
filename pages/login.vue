@@ -142,11 +142,6 @@ onMounted(async () => {
   </div>
   <div v-else>
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle/>
-        </IonToolbar>
-      </IonHeader>
       <IonContent :fullscreen="true">
         <section class="px-4 mt-4">
           <div class="flex justify-between items-center mb-4 w-full">

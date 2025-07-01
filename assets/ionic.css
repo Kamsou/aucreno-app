@@ -158,8 +158,12 @@ ion-content {
     bottom: env(safe-area-inset-bottom, 0px) !important;
   }
   
-  /* Force le PWA même pour Safari et Chrome iOS */
-  .safari-ios .tab-bar,
+  /* Ajustement spécifique Safari iOS en mode PWA */
+  .safari-ios .tab-bar {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+  }
+  
+  /* Chrome iOS garde le comportement normal en PWA */
   .chrome-ios .tab-bar {
     bottom: env(safe-area-inset-bottom, 0px) !important;
   }

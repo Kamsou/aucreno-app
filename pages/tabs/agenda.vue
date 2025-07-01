@@ -18,8 +18,6 @@ interface Appointment {
 }
 
 const auth = useAuthStore()
-
-// Détection PWA pour adapter l'interface
 const { isPWA } = usePWADetection()
 
 const selectedDate = ref<string | null>(null)
@@ -85,7 +83,10 @@ function handleAppointmentClick(appointment: Appointment) {
     <IonContent :fullscreen="true">
       <IonHeader collapse="condense">
         <IonToolbar>
-          <p class="px-3 text-2xl font-bold">
+          <p
+            class="px-3 text-2xl font-bold"
+            :class="isPWA ? 'mt-0' : 'mt-4'"
+          >
             Agenda
           </p>
         </IonToolbar>
