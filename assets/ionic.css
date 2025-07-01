@@ -144,12 +144,12 @@ ion-content {
 
 /* Adaptations spécifiques Safari iOS */
 .safari-ios .tab-bar {
-  bottom: 55px !important; /* Au-dessus de la barre d'adresse Safari */
+  bottom: 85px !important; /* Au-dessus de la barre d'adresse Safari */
 }
 
 /* Adaptations spécifiques Chrome iOS */
 .chrome-ios .tab-bar {
-  bottom: 100px !important; /* Au-dessus de la barre d'adresse Chrome */
+  bottom: 120px !important; /* Au-dessus de la barre d'adresse Chrome */
 }
 
 /* PWA mode (standalone) - garde le comportement normal pour tous */
