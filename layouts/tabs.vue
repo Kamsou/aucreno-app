@@ -17,7 +17,7 @@ useBrowserDetection()
       
       <nav
         class="fixed left-0 right-0 bg-white border-t border-gray-200 
-               flex justify-around items-center z-[9999] tab-bar-chrome"
+               flex justify-around items-center z-[9999] tab-bar"
         style="height: 4rem;">
         <NuxtLink
           replace

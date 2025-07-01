@@ -131,8 +131,8 @@ ion-content {
   }
 }
 
-/* Force la tab bar au-dessus de tout */
-.tab-bar-chrome {
+/* Style de base pour la tab bar */
+.tab-bar {
   position: fixed !important;
   bottom: env(safe-area-inset-bottom, 0px) !important;
   left: 0 !important;
@@ -142,94 +142,45 @@ ion-content {
   backface-visibility: hidden;
 }
 
-/* Safari iOS spécifiquement - détection par supports */
-@supports (-webkit-touch-callout: none) {
-  /* Safari sur iOS en mode navigateur */
-  @media not all and (display-mode: standalone) {
-    .tab-bar-chrome {
-      bottom: 150px !important; /* Augmenté pour Safari iOS */
-    }
-  }
+/* Adaptations spécifiques Safari iOS */
+.safari-ios .tab-bar {
+  bottom: 85px !important; /* Au-dessus de la barre d'adresse Safari */
 }
 
-/* Fallback supplémentaire pour Safari iOS */
+/* Adaptations spécifiques Chrome iOS */
+.chrome-ios .tab-bar {
+  bottom: 120px !important; /* Au-dessus de la barre d'adresse Chrome */
+}
+
+/* Fallback pour iOS non détecté - Chrome par défaut */
 @media screen and (max-width: 768px) {
-  @supports (-webkit-touch-callout: none) and (not (display-mode: standalone)) {
-    .tab-bar-chrome {
-      bottom: 140px !important; /* Double sécurité pour Safari */
+  .ios:not(.safari-ios) .tab-bar {
+    bottom: 120px !important;
+  }
+}
+
+/* Fallback pour Safari iOS via CSS detection */
+@supports (-webkit-touch-callout: none) {
+  @media not all and (display-mode: standalone) {
+    .tab-bar {
+      bottom: 85px !important; /* Position Safari par défaut */
     }
   }
 }
 
-/* Détection Safari spécifique via user-agent (fallback JS) */
-.safari-ios .tab-bar-chrome {
-  bottom: 105px !important;
+/* Override spécifique pour Chrome iOS même avec supports Safari */
+.chrome-ios .tab-bar {
+  bottom: 120px !important; /* Force Chrome même si supports Safari détecté */
 }
 
-/* PWA mode (standalone) - garde le comportement normal */
+/* PWA mode (standalone) - garde le comportement normal pour tous */
 @media (display-mode: standalone) {
-  .tab-bar-chrome {
+  .tab-bar {
     bottom: env(safe-area-inset-bottom, 0px) !important;
   }
 }
 
 
-/* Tab bar adaptative pour Chrome mobile */
-.tab-bar-chrome {
-  /* Position au-dessus de l'address bar dynamique de Chrome */
-  bottom: max(env(safe-area-inset-bottom, 0px), env(keyboard-inset-height, 0px)) !important;
-}
-
-/* Support pour les navigateurs qui supportent dvh (dynamic viewport height) */
-@supports (height: 100dvh) {
-  .tab-bar-chrome {
-    bottom: calc(100dvh - 100vh + env(safe-area-inset-bottom, 0px)) !important;
-  }
-}
-
-/* Fix spécifique pour Chrome sur Android */
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (orientation: portrait) {
-  .tab-bar-chrome {
-    bottom: calc(env(safe-area-inset-bottom, 0px) + env(titlebar-area-height, 0px)) !important;
-  }
-}
-
-/* Fix spécifique pour Chrome iOS - détection par user agent */
-.chrome-ios .tab-bar-chrome {
-  bottom: 100px !important; /* Position fixe pour Chrome iOS */
-}
-
-/* Chrome iOS fallback - alternative de détection */
-.ios.chrome .tab-bar-chrome {
-  bottom: 100px !important;
-}
-
-/* Chrome iOS en mode non-standalone */
-@supports not (-webkit-touch-callout: none) {
-  /* Chrome iOS (pas Safari) */
-  @media not all and (display-mode: standalone) {
-    .tab-bar-chrome {
-      bottom: 100px !important;
-    }
-  }
-}
-
-/* Règle de fallback pour tous les navigateurs iOS non-Safari en mode navigateur */
-@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
-  /* iOS en général, mais pas en mode standalone */
-  @media not all and (display-mode: standalone) {
-    .ios:not(.safari-ios) .tab-bar-chrome {
-      bottom: 100px !important;
-    }
-  }
-}
-
-/* Ajustement pour le viewport stable quand l'address bar est cachée */
-@media (orientation: portrait) and (max-height: 700px) {
-  .tab-bar-chrome {
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 8px) !important;
-  }
-}
 
 /* Fix pour maintenir le standalone sur iOS */
 html, body {
@@ -265,7 +216,7 @@ button, .ion-activatable, a {
 }
 
 /* Force le pointer sur les éléments cliquables */
-.tab-bar-safari a,
+.tab-bar a,
 .button-primary,
 ion-button {
   touch-action: manipulation;
