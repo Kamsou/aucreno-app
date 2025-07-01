@@ -163,7 +163,7 @@ ion-content {
 
 /* Détection Safari spécifique via user-agent (fallback JS) */
 .safari-ios .tab-bar-chrome {
-  bottom: 85px !important;
+  bottom: 105px !important;
 }
 
 /* PWA mode (standalone) - garde le comportement normal */
@@ -196,12 +196,12 @@ ion-content {
 
 /* Fix spécifique pour Chrome iOS - détection par user agent */
 .chrome-ios .tab-bar-chrome {
-  bottom: 120px !important; /* Position fixe pour Chrome iOS */
+  bottom: 100px !important; /* Position fixe pour Chrome iOS */
 }
 
 /* Chrome iOS fallback - alternative de détection */
 .ios.chrome .tab-bar-chrome {
-  bottom: 120px !important;
+  bottom: 100px !important;
 }
 
 /* Chrome iOS en mode non-standalone */
@@ -209,7 +209,7 @@ ion-content {
   /* Chrome iOS (pas Safari) */
   @media not all and (display-mode: standalone) {
     .tab-bar-chrome {
-      bottom: 120px !important;
+      bottom: 100px !important;
     }
   }
 }
