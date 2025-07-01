@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       name: 'Aucreno',
       short_name: 'Aucreno',
       description: "Fini les carnets : l'app gère ta planif' et ton suivi client.",
-      theme_color: '#000000',
+      theme_color: '#ffffff',
       lang: "fr",
       icons: [
         {

@@ -149,7 +149,7 @@ ion-content {
 
 /* Adaptations spécifiques Chrome iOS */
 .chrome-ios .tab-bar {
-  bottom: 120px !important; /* Au-dessus de la barre d'adresse Chrome */
+  bottom: 110px !important; /* Au-dessus de la barre d'adresse Chrome */
 }
 
 /* PWA mode (standalone) - garde le comportement normal pour tous */
@@ -160,7 +160,7 @@ ion-content {
   
   /* Ajustement spécifique Safari iOS en mode PWA */
   .safari-ios .tab-bar {
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 40px) !important;
   }
   
   /* Chrome iOS garde le comportement normal en PWA */
