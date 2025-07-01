@@ -18,10 +18,10 @@ export default function useBrowserDetection() {
     const isAndroid = /android/.test(userAgent)
     
     // Détection Chrome iOS (Chrome sur iOS utilise WebKit mais garde "Chrome" dans l'UA)
-    const isChromeIOS = isIOS && /crios|chrome/.test(userAgent)
+    const isChromeIOS = isIOS && (/crios/.test(userAgent) || /chrome/.test(userAgent))
     
-    // Détection Safari iOS (Safari natif iOS)
-    const isSafariIOS = isIOS && !isChromeIOS && /safari/.test(userAgent)
+    // Détection Safari iOS (Safari natif iOS - pas Chrome, pas Firefox, etc.)
+    const isSafariIOS = isIOS && !isChromeIOS && !(/firefox|fxios|edgios|opera|opios/.test(userAgent))
     
     // Détection Chrome (général)
     const isChrome = /chrome/.test(userAgent) && !/edg|opr/.test(userAgent)
@@ -47,9 +47,11 @@ export default function useBrowserDetection() {
     // Ajouter les nouvelles classes
     if (isSafariIOS) {
       body.classList.add('safari-ios')
+      console.log('🍎 Safari iOS détecté - classe safari-ios ajoutée')
     }
     if (isChromeIOS) {
       body.classList.add('chrome-ios')
+      console.log('🟢 Chrome iOS détecté - classe chrome-ios ajoutée')
     }
     if (isSafari) {
       body.classList.add('safari')
