@@ -144,12 +144,12 @@ ion-content {
 
 /* Adaptations spécifiques Safari iOS */
 .safari-ios .tab-bar {
-  bottom: 85px !important; /* Au-dessus de la barre d'adresse Safari */
+  bottom: 55px !important; /* Au-dessus de la barre d'adresse Safari */
 }
 
 /* Adaptations spécifiques Chrome iOS */
 .chrome-ios .tab-bar {
-  bottom: 120px !important; /* Au-dessus de la barre d'adresse Chrome */
+  bottom: 100px !important; /* Au-dessus de la barre d'adresse Chrome */
 }
 
 /* Fallback pour iOS non détecté - Chrome par défaut */
@@ -163,14 +163,14 @@ ion-content {
 @supports (-webkit-touch-callout: none) {
   @media not all and (display-mode: standalone) {
     .tab-bar {
-      bottom: 85px !important; /* Position Safari par défaut */
+      bottom: 55px !important; /* Position Safari par défaut */
     }
   }
 }
 
 /* Override spécifique pour Chrome iOS même avec supports Safari */
 .chrome-ios .tab-bar {
-  bottom: 120px !important; /* Force Chrome même si supports Safari détecté */
+  bottom: 100px !important; /* Force Chrome même si supports Safari détecté */
 }
 
 /* PWA mode (standalone) - garde le comportement normal pour tous */
