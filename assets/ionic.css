@@ -194,6 +194,36 @@ ion-content {
   }
 }
 
+/* Fix spécifique pour Chrome iOS - détection par user agent */
+.chrome-ios .tab-bar-chrome {
+  bottom: 120px !important; /* Position fixe pour Chrome iOS */
+}
+
+/* Chrome iOS fallback - alternative de détection */
+.ios.chrome .tab-bar-chrome {
+  bottom: 120px !important;
+}
+
+/* Chrome iOS en mode non-standalone */
+@supports not (-webkit-touch-callout: none) {
+  /* Chrome iOS (pas Safari) */
+  @media not all and (display-mode: standalone) {
+    .tab-bar-chrome {
+      bottom: 120px !important;
+    }
+  }
+}
+
+/* Règle de fallback pour tous les navigateurs iOS non-Safari en mode navigateur */
+@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
+  /* iOS en général, mais pas en mode standalone */
+  @media not all and (display-mode: standalone) {
+    .ios:not(.safari-ios) .tab-bar-chrome {
+      bottom: 100px !important;
+    }
+  }
+}
+
 /* Ajustement pour le viewport stable quand l'address bar est cachée */
 @media (orientation: portrait) and (max-height: 700px) {
   .tab-bar-chrome {

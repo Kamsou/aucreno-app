@@ -6,19 +6,8 @@ import {
   personOutline as ioniconsPersonOutline
 } from 'ionicons/icons'
 
-// Détection Safari iOS pour ajouter une classe CSS
-onMounted(() => {
-  if (import.meta.client) {
-    const isSafariIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && 
-                       /Safari/.test(navigator.userAgent) && 
-                       !/Chrome|CriOS|FxiOS/.test(navigator.userAgent)
-    
-    if (isSafariIOS) {
-      document.body.classList.add('safari-ios')
-      console.log('Safari iOS détecté - classe ajoutée')
-    }
-  }
-})
+// Utilisation du nouveau composable de détection de navigateur
+useBrowserDetection()
 </script>
 
 <template>
