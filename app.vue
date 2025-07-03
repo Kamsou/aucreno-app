@@ -76,9 +76,7 @@ onMounted(() => {
         <NuxtPwaManifest />
         <NuxtLayout>
           <NuxtPage
-            v-if="withTransition"
-            :transition="{ name: transitionName, mode: 'default' }" />
-          <NuxtPage v-else />
+            :transition="withTransition ? { name: transitionName, mode: 'default' } : false" />
         </NuxtLayout>
       </div>
       <InstallPromptDialog />
