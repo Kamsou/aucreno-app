@@ -10,6 +10,7 @@ const showSplash = ref(true)
 
 const withTransition = computed(() => {
   const path = router.currentRoute.value.path
+  // Only apply transition for login page
   return path === '/login'
 })
 
@@ -25,11 +26,14 @@ function isRealMobile() {
 watch(
   () => router.currentRoute.value,
   (to, from) => {
-    updateDirection(
-      to ?? router.currentRoute.value,
-      from ?? router.currentRoute.value
-    )
-    transitionName.value = direction.value === 'back' ? 'slide-back' : 'slide-forward'
+    // Only update direction for login page transitions
+    if (to?.path === '/login' || from?.path === '/login') {
+      updateDirection(
+        to ?? router.currentRoute.value,
+        from ?? router.currentRoute.value
+      )
+      transitionName.value = direction.value === 'back' ? 'slide-back' : 'slide-forward'
+    }
   },
   { immediate: true }
 )
