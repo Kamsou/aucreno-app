@@ -22,20 +22,40 @@ function isStandalone() {
 function detectBrowser() {
   const userAgent = navigator.userAgent.toLowerCase()
 
+  console.log('User Agent:', navigator.userAgent)
+  console.log('User Agent (lowercase):', userAgent)
   
-  if (/chrome/.test(userAgent) && !/edg/.test(userAgent) && !/opr/.test(userAgent)) {
+  // Détecter Chrome sur iOS (CriOS)
+  if (/crios/.test(userAgent)) {
+    console.log('Detected: Chrome iOS')
     return 'chrome'
   }
   
-  if (/safari/.test(userAgent) && !/chrome/.test(userAgent)) {
+  // Détecter Chrome sur Android et Desktop
+  if (/chrome/.test(userAgent) && !/edg/.test(userAgent) && !/opr/.test(userAgent) && !/safari/.test(userAgent)) {
+    console.log('Detected: Chrome Desktop/Android')
+    return 'chrome'
+  }
+  
+  // Détecter Chrome sur Desktop (version plus permissive)
+  if (/chrome/.test(userAgent) && !/edg/.test(userAgent) && !/opr/.test(userAgent) && !/iphone|ipad|ipod/.test(userAgent)) {
+    console.log('Detected: Chrome Desktop')
+    return 'chrome'
+  }
+  
+  // Safari sur iOS
+  if (/iphone|ipad|ipod/.test(userAgent) && /safari/.test(userAgent) && !/crios/.test(userAgent) && !/chrome/.test(userAgent)) {
+    console.log('Detected: Safari iOS')
     return 'safari'
   }
   
-  if (/iphone|ipad|ipod/.test(userAgent) && /safari/.test(userAgent) && !/chrome/.test(userAgent)) {
+  // Safari sur macOS
+  if (/safari/.test(userAgent) && !/chrome/.test(userAgent) && !/crios/.test(userAgent)) {
+    console.log('Detected: Safari macOS')
     return 'safari'
   }
   
-
+  console.log('Detected: Other')
   return 'other'
 }
 
