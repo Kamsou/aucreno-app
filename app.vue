@@ -79,7 +79,7 @@ onMounted(() => {
           <NuxtPage v-else />
         </NuxtLayout>
       </div>
-      <InstallPromptDialog />
+      <!-- <InstallPromptDialog /> -->
     </template>
 
     <template v-else>

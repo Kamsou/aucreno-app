@@ -167,7 +167,7 @@ function close() {
               <div class="flex-1">
                 <div class="flex items-center gap-2 mb-1">
                   <Icon
-                    name="material-symbols:more-vert"
+                    name="ion:share-outline"
                     class="text-gray-700" />
                   <p class="font-medium text-gray-900">Appuyez sur Partager</p>
                 </div>
@@ -191,7 +191,7 @@ function close() {
                   <p class="font-medium text-gray-900">Ajouter à l'écran d'accueil</p>
                 </div>
                 <p class="text-gray-600 text-xs">
-                  Dans le menu
+                  Dans le menu de partage
                 </p>
               </div>
             </div>
