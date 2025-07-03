@@ -8,12 +8,6 @@ const isMobile = ref(true)
 const currentUrl = ref('https://aucreno.com')
 const showSplash = ref(true)
 
-const withTransition = computed(() => {
-  const path = router.currentRoute.value.path
-  // Only apply transition for login page
-  return path === '/login'
-})
-
 function isRealMobile() {
   const isUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   /* decomment that line to test on desktop */
@@ -75,8 +69,10 @@ onMounted(() => {
       <div class="relative min-h-screen">
         <NuxtPwaManifest />
         <NuxtLayout>
-          <NuxtPage
-            :transition="withTransition ? { name: transitionName, mode: 'default' } : false" />
+          <NuxtPage 
+            v-if="router.currentRoute.value.path === '/login'"
+            :transition="{ name: transitionName, mode: 'default' }" />
+          <NuxtPage v-else />
         </NuxtLayout>
       </div>
       <InstallPromptDialog />
