@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const router = useRouter()
-const allRoutes = router.getRoutes().map(r => r.path)
 
 const { direction, updateDirection } = usePageDirection()
 const transitionName = ref('slide-forward')
@@ -11,7 +10,7 @@ const showSplash = ref(true)
 
 const withTransition = computed(() => {
   const path = router.currentRoute.value.path
-  return allRoutes.includes(path)
+  return path === '/login'
 })
 
 function isRealMobile() {
@@ -58,7 +57,6 @@ onMounted(() => {
 
 <template>
   <IonApp>
-    <!-- Splash Screen -->
     <div
       v-if="showSplash"
       class="fixed inset-0 z-[10000] bg-white flex items-center justify-center splash-screen">
