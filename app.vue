@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const router = useRouter()
+const allRoutes = router.getRoutes().map(r => r.path)
 
 const { direction, updateDirection } = usePageDirection()
 const transitionName = ref('slide-forward')
@@ -7,6 +8,11 @@ const transitionName = ref('slide-forward')
 const isMobile = ref(true)
 const currentUrl = ref('https://aucreno.com')
 const showSplash = ref(true)
+
+const withTransition = computed(() => {
+  const path = router.currentRoute.value.path
+  return allRoutes.includes(path)
+})
 
 function isRealMobile() {
   const isUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -20,14 +26,11 @@ function isRealMobile() {
 watch(
   () => router.currentRoute.value,
   (to, from) => {
-    // Only update direction for login page transitions
-    if (to?.path === '/login' || from?.path === '/login') {
-      updateDirection(
-        to ?? router.currentRoute.value,
-        from ?? router.currentRoute.value
-      )
-      transitionName.value = direction.value === 'back' ? 'slide-back' : 'slide-forward'
-    }
+    updateDirection(
+      to ?? router.currentRoute.value,
+      from ?? router.currentRoute.value
+    )
+    transitionName.value = direction.value === 'back' ? 'slide-back' : 'slide-forward'
   },
   { immediate: true }
 )
@@ -69,8 +72,8 @@ onMounted(() => {
       <div class="relative min-h-screen">
         <NuxtPwaManifest />
         <NuxtLayout>
-          <NuxtPage 
-            v-if="router.currentRoute.value.path === '/login'"
+          <NuxtPage
+            v-if="withTransition"
             :transition="{ name: transitionName, mode: 'default' }" />
           <NuxtPage v-else />
         </NuxtLayout>
