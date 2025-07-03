@@ -109,16 +109,15 @@ ion-datetime::part(calendar-day active) {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-nav[class*="fixed bottom"] {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  min-height: calc(4rem + env(safe-area-inset-bottom, 0px));
-}
+/* Removed - redundant with .tab-bar styles */
 
+/* Base content padding */
 ion-content {
   --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  overscroll-behavior: contain;
 }
 
-/* Ajustement du padding pour le contenu selon le navigateur */
+/* Browser-specific content padding adjustments */
 .safari-ios ion-content {
   --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 85px);
 }
@@ -131,8 +130,12 @@ ion-content {
   --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 56px);
 }
 
-/* En mode PWA, padding ajusté pour tous */
+/* PWA mode - adjusted padding for all browsers */
 @media (display-mode: standalone) {
+  ion-content {
+    --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 20px);
+  }
+  
   .safari-ios ion-content {
     --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 30px);
   }
@@ -144,27 +147,11 @@ ion-content {
   .chrome-android ion-content {
     --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 15px);
   }
-  
-  /* Navigateur par défaut en PWA */
-  ion-content {
-    --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 20px);
-  }
 }
 
-/* Fix spécifique pour Safari - Tab bar toujours visible */
-@supports (-webkit-touch-callout: none) {
-  /* Styles spécifiques à Safari */
-  nav[class*="fixed bottom"] {
-    z-index: 99999 !important;
-    position: fixed !important;
-    bottom: 0 !important;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    will-change: transform;
-  }
-}
+/* Removed - redundant with specific browser detections */
 
-/* Style de base pour la tab bar */
+/* Tab bar base styles */
 .tab-bar {
   position: fixed !important;
   bottom: env(safe-area-inset-bottom, 0px) !important;
@@ -175,22 +162,20 @@ ion-content {
   backface-visibility: hidden;
 }
 
-/* Adaptations spécifiques Safari iOS */
+/* Browser-specific tab bar positioning */
 .safari-ios .tab-bar {
   bottom: calc(env(safe-area-inset-bottom, 0px) + 85px) !important;
 }
 
-/* Adaptations spécifiques Chrome iOS */
 .chrome-ios .tab-bar {
   bottom: calc(env(safe-area-inset-bottom, 0px) + 110px) !important;
 }
 
-/* Android Chrome */
 .chrome-android .tab-bar {
   bottom: calc(env(safe-area-inset-bottom, 0px) + 56px) !important;
 }
 
-/* PWA mode (standalone) - ajustements spécifiques */
+/* PWA mode - adjusted positioning */
 @media (display-mode: standalone) {
   .tab-bar {
     bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
@@ -211,49 +196,16 @@ ion-content {
 
 
 
-/* Fix pour maintenir le standalone sur iOS */
-html, body {
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  height: 100%;
-  overflow: hidden;
-}
-
-ion-content {
-  overscroll-behavior: contain;
-}
-
-/* Amélioration des interactions tactiles */
-* {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-/* Réactivez la sélection pour les inputs et textareas */
-input, textarea, [contenteditable] {
-  -webkit-user-select: auto;
-  user-select: auto;
-}
-
-/* Amélioration des boutons et liens */
-button, .ion-activatable, a {
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
-  touch-action: manipulation;
-}
-
-/* Force le pointer sur les éléments cliquables */
-.tab-bar a,
-.button-primary,
-ion-button {
-  touch-action: manipulation;
-  cursor: pointer;
-}
-
-/* Fix pour empêcher la sortie du standalone */
+/* PWA standalone mode fixes */
 @media (display-mode: standalone) {
+  /* Fix pour maintenir le standalone sur iOS */
+  html, body {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    overflow: hidden;
+  }
+  
   body {
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: auto;
@@ -265,4 +217,38 @@ ion-button {
   .ion-page {
     contain: layout style paint;
   }
+}
+
+/* General content scrolling */
+ion-content {
+  overscroll-behavior: contain;
+}
+
+/* Touch interactions improvements */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable selection for inputs and textareas */
+input, textarea, [contenteditable] {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+/* Improve buttons and links */
+button, .ion-activatable, a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  touch-action: manipulation;
+}
+
+/* Force pointer on clickable elements */
+.tab-bar a,
+.button-primary,
+ion-button {
+  touch-action: manipulation;
+  cursor: pointer;
 }
