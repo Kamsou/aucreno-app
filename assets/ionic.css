@@ -131,12 +131,23 @@ ion-content {
   --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 56px);
 }
 
-/* En mode PWA, padding normal pour tous */
+/* En mode PWA, padding ajusté pour tous */
 @media (display-mode: standalone) {
-  .safari-ios ion-content,
-  .chrome-ios ion-content,
+  .safari-ios ion-content {
+    --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 30px);
+  }
+  
+  .chrome-ios ion-content {
+    --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 20px);
+  }
+  
   .chrome-android ion-content {
-    --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+    --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 15px);
+  }
+  
+  /* Navigateur par défaut en PWA */
+  ion-content {
+    --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 20px);
   }
 }
 
@@ -179,16 +190,22 @@ ion-content {
   bottom: calc(env(safe-area-inset-bottom, 0px) + 56px) !important;
 }
 
-/* PWA mode (standalone) - comportement normal pour tous */
+/* PWA mode (standalone) - ajustements spécifiques */
 @media (display-mode: standalone) {
   .tab-bar {
-    bottom: env(safe-area-inset-bottom, 0px) !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
   }
   
-  .safari-ios .tab-bar,
-  .chrome-ios .tab-bar,
+  .safari-ios .tab-bar {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 30px) !important;
+  }
+  
+  .chrome-ios .tab-bar {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 20px) !important;
+  }
+  
   .chrome-android .tab-bar {
-    bottom: env(safe-area-inset-bottom, 0px) !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 15px) !important;
   }
 }
 
