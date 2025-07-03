@@ -1,93 +1,45 @@
-export default function useBrowserDetection() {
-  const browserInfo = ref({
-    isSafari: false,
-    isChrome: false,
-    isIOS: false,
-    isAndroid: false,
-    isChromeIOS: false,
-    isSafariIOS: false
-  })
-
-  const detectBrowser = () => {
-    if (!import.meta.client) {
-      return
-    }
-
+export const useBrowserDetection = () => {
+  if (import.meta.client) {
     const userAgent = navigator.userAgent.toLowerCase()
     const isIOS = /iphone|ipad|ipod/.test(userAgent)
     const isAndroid = /android/.test(userAgent)
     
-    // Détection Chrome iOS (Chrome sur iOS utilise WebKit mais garde "Chrome" dans l'UA)
-    const isChromeIOS = isIOS && (/crios/.test(userAgent) || /chrome/.test(userAgent))
+    let browserClass = ''
     
-    // Détection Safari iOS (Safari natif iOS - pas Chrome, pas Firefox, etc.)
-    const isSafariIOS = isIOS && !isChromeIOS && !(/firefox|fxios|edgios|opera|opios/.test(userAgent))
-    
-    // Détection Chrome (général)
-    const isChrome = /chrome/.test(userAgent) && !/edg|opr/.test(userAgent)
-    
-    // Détection Safari (général)
-    const isSafari = /safari/.test(userAgent) && !/chrome|edg|opr/.test(userAgent)
-
-    browserInfo.value = {
-      isSafari,
-      isChrome,
-      isIOS,
-      isAndroid,
-      isChromeIOS,
-      isSafariIOS
-    }
-
-    // Ajouter les classes CSS correspondantes au body
-    const body = document.body
-    
-    // Nettoyer les anciennes classes
-    body.classList.remove('safari-ios', 'chrome-ios', 'safari', 'chrome', 'ios', 'android')
-    
-    // Ajouter les nouvelles classes
-    if (isSafariIOS) {
-      body.classList.add('safari-ios')
-      console.log('🍎 Safari iOS détecté - classe safari-ios ajoutée')
-    }
-    if (isChromeIOS) {
-      body.classList.add('chrome-ios')
-      console.log('🟢 Chrome iOS détecté - classe chrome-ios ajoutée')
-    }
-    if (isSafari) {
-      body.classList.add('safari')
-    }
-    if (isChrome) {
-      body.classList.add('chrome')
-    }
     if (isIOS) {
-      body.classList.add('ios')
+      // Sur iOS, détection spécifique
+      if (/crios/.test(userAgent)) {
+        browserClass = 'chrome-ios'
+      } else if (/safari/.test(userAgent) && !/chrome/.test(userAgent)) {
+        browserClass = 'safari-ios'
+      } else {
+        browserClass = 'safari-ios' // Fallback pour iOS
+      }
+    } else if (isAndroid) {
+      if (/chrome/.test(userAgent)) {
+        browserClass = 'chrome-android'
+      } else {
+        browserClass = 'android-other'
+      }
+    } else {
+      // Desktop
+      if (/chrome/.test(userAgent) && !/edg/.test(userAgent)) {
+        browserClass = 'chrome-desktop'
+      } else if (/safari/.test(userAgent) && !/chrome/.test(userAgent)) {
+        browserClass = 'safari-desktop'
+      } else {
+        browserClass = 'other-desktop'
+      }
     }
-    if (isAndroid) {
-      body.classList.add('android')
-    }
-
-    return browserInfo.value
-  }
-
-  const logBrowserInfo = () => {
-    if (import.meta.client) {
-      console.log('🌐 Browser Detection Info:', {
-        ...browserInfo.value,
-        userAgent: navigator.userAgent
-      })
-    }
-  }
-
-  onMounted(() => {
-    detectBrowser()
-    if (process.env.NODE_ENV === 'development') {
-      logBrowserInfo()
-    }
-  })
-
-  return {
-    browserInfo: readonly(browserInfo),
-    detectBrowser,
-    logBrowserInfo
+    
+    console.log('Browser detection:', {
+      userAgent: navigator.userAgent,
+      browserClass,
+      isIOS,
+      isAndroid
+    })
+    
+    // Appliquer la classe au body
+    document.body.classList.add(browserClass)
   }
 }

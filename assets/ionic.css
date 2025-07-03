@@ -118,6 +118,28 @@ ion-content {
   --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
 }
 
+/* Ajustement du padding pour le contenu selon le navigateur */
+.safari-ios ion-content {
+  --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 85px);
+}
+
+.chrome-ios ion-content {
+  --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 110px);
+}
+
+.chrome-android ion-content {
+  --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px) + 56px);
+}
+
+/* En mode PWA, padding normal pour tous */
+@media (display-mode: standalone) {
+  .safari-ios ion-content,
+  .chrome-ios ion-content,
+  .chrome-android ion-content {
+    --padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* Fix spécifique pour Safari - Tab bar toujours visible */
 @supports (-webkit-touch-callout: none) {
   /* Styles spécifiques à Safari */
@@ -144,27 +166,28 @@ ion-content {
 
 /* Adaptations spécifiques Safari iOS */
 .safari-ios .tab-bar {
-  bottom: 85px !important; /* Au-dessus de la barre d'adresse Safari */
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 85px) !important;
 }
 
 /* Adaptations spécifiques Chrome iOS */
 .chrome-ios .tab-bar {
-  bottom: 110px !important; /* Au-dessus de la barre d'adresse Chrome */
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 110px) !important;
 }
 
-/* PWA mode (standalone) - garde le comportement normal pour tous */
+/* Android Chrome */
+.chrome-android .tab-bar {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 56px) !important;
+}
+
+/* PWA mode (standalone) - comportement normal pour tous */
 @media (display-mode: standalone) {
   .tab-bar {
     bottom: env(safe-area-inset-bottom, 0px) !important;
   }
   
-  /* Ajustement spécifique Safari iOS en mode PWA */
-  .safari-ios .tab-bar {
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 40px) !important;
-  }
-  
-  /* Chrome iOS garde le comportement normal en PWA */
-  .chrome-ios .tab-bar {
+  .safari-ios .tab-bar,
+  .chrome-ios .tab-bar,
+  .chrome-android .tab-bar {
     bottom: env(safe-area-inset-bottom, 0px) !important;
   }
 }
