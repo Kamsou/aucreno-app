@@ -6,8 +6,9 @@ import {
   personOutline as ioniconsPersonOutline
 } from 'ionicons/icons'
 
-// Utilisation du nouveau composable de détection de navigateur
-useBrowserDetection()
+onMounted(() => {
+  useBrowserDetection()
+})
 </script>
 
 <template>

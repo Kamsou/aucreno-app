@@ -21,13 +21,9 @@ function isStandalone() {
 
 function detectBrowser() {
   const userAgent = navigator.userAgent.toLowerCase()
-  
 
-  if (/iphone|ipad|ipod/.test(userAgent) && /safari/.test(userAgent) && !/chrome/.test(userAgent)) {
-    return 'safari'
-  }
   
-  if (/android/.test(userAgent) && /chrome/.test(userAgent)) {
+  if (/chrome/.test(userAgent) && !/edg/.test(userAgent) && !/opr/.test(userAgent)) {
     return 'chrome'
   }
   
@@ -35,10 +31,11 @@ function detectBrowser() {
     return 'safari'
   }
   
-  if (/chrome/.test(userAgent)) {
-    return 'chrome'
+  if (/iphone|ipad|ipod/.test(userAgent) && /safari/.test(userAgent) && !/chrome/.test(userAgent)) {
+    return 'safari'
   }
   
+
   return 'other'
 }
 
@@ -152,10 +149,10 @@ function close() {
                   <Icon
                     name="material-symbols:more-vert"
                     class="text-gray-700" />
-                  <p class="font-medium text-gray-900">Menu</p>
+                  <p class="font-medium text-gray-900">Appuyez sur Partager</p>
                 </div>
                 <p class="text-gray-600 text-xs">
-                  Trois points en haut à droite
+                  En haut à droite de Chrome
                 </p>
               </div>
             </div>
